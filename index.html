@@ -1,8 +1,1408 @@
 <!DOCTYPE html>
-<html>
-    <head>
-    </head>
-    <body>
-Hello World!
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Query Secrets: Unlocking Low-Code Data Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1f1f1f 0%, #2d2d2d 100%);
+            overflow-x: hidden;
+        }
+
+        .presentation-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .presentation-container {
+                padding: 10px;
+                padding-bottom: 80px;
+            }
+        }
+
+        .slide {
+            width: 100%;
+            max-width: 1200px;
+            min-height: 600px;
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            display: none;
+            padding: 40px;
+            padding-bottom: 100px;
+            position: relative;
+            overflow: auto;
+            border: 2px solid rgba(255,193,7,0.2);
+        }
+
+        @media (max-width: 768px) {
+            .slide {
+                padding: 20px;
+                padding-bottom: 100px;
+                min-height: auto;
+                border-radius: 10px;
+            }
+        }
+
+        .slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Power Query Brand Colors - Green theme */
+        .slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, var(--accent-color, #107C10) 0%, #4CAF50 100%);
+        }
+
+        .slide-pq { --accent-color: #107C10; --secondary: #4CAF50; }
+        .slide-advanced { --accent-color: #0078d4; --secondary: #2196F3; }
+        .slide-warning { --accent-color: #D13438; --secondary: #FF6B6B; }
+        .slide-success { --accent-color: #107C10; --secondary: #4CAF50; }
+        .slide-info { --accent-color: #0078d4; --secondary: #2196F3; }
+        .slide-tips { --accent-color: #F2C811; --secondary: #FFD93D; }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .slide-number {
+            background: linear-gradient(135deg, var(--accent-color, #107C10) 0%, var(--secondary, #4CAF50) 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: clamp(24px, 5vw, 36px);
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f1f1f 0%, #107C10 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: clamp(16px, 3vw, 20px);
+            color: #424242;
+            margin-bottom: 18px;
+            font-weight: 400;
+        }
+
+        .author {
+            font-size: 16px;
+            color: #666;
+            font-style: italic;
+            background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%);
+            padding: 8px 16px;
+            border-radius: 8px;
+            border-left: 4px solid #107C10;
+        }
+
+        h2 {
+            font-size: clamp(22px, 4vw, 28px);
+            color: #1f1f1f;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: clamp(18px, 3vw, 22px);
+            color: #333;
+            margin-bottom: 15px;
+            margin-top: 20px;
+            font-weight: 600;
+        }
+
+        .feature-list {
+            list-style: none;
+            font-size: clamp(16px, 2.5vw, 18px);
+            line-height: 1.8;
+        }
+
+        .feature-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            padding: 8px 0;
+        }
+
+        .checkmark {
+            color: #107C10;
+            font-size: 24px;
+            margin-right: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .warning {
+            color: #D13438;
+            font-size: 24px;
+            margin-right: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .star {
+            color: #F2C811;
+            font-size: 24px;
+            margin-right: 12px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .code-box {
+            background: #2d2d2d;
+            color: #4CAF50;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: clamp(12px, 2vw, 14px);
+            line-height: 1.6;
+            overflow-x: auto;
+            border-left: 4px solid #107C10;
+        }
+
+        .code-box code {
+            color: #4CAF50;
+        }
+
+        .code-comment {
+            color: #888;
+        }
+
+        .visual-box {
+            background: linear-gradient(135deg, rgba(16,124,16,0.08) 0%, rgba(76,175,80,0.08) 100%);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 25px 0;
+            text-align: center;
+            font-style: italic;
+            color: #424242;
+            border: 2px dashed rgba(16,124,16,0.3);
+            font-size: clamp(14px, 2vw, 16px);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .visual-box {
+                padding: 15px;
+                margin: 15px 0;
+            }
+        }
+
+        .highlight-text {
+            background: linear-gradient(120deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: clamp(15px, 2.2vw, 18px);
+            font-weight: 500;
+            border-left: 4px solid #107C10;
+            color: #1f1f1f;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .highlight-text {
+                padding: 15px;
+                margin: 15px 0;
+            }
+        }
+
+        .tip-box {
+            background: linear-gradient(120deg, rgba(242,200,17,0.1) 0%, rgba(255,217,61,0.1) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: clamp(14px, 2vw, 16px);
+            border-left: 4px solid #F2C811;
+            color: #1f1f1f;
+            line-height: 1.6;
+        }
+
+        .warning-box {
+            background: linear-gradient(120deg, rgba(209,52,56,0.1) 0%, rgba(255,107,107,0.1) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: clamp(14px, 2vw, 16px);
+            border-left: 4px solid #D13438;
+            color: #1f1f1f;
+            line-height: 1.6;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            align-items: start;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, rgba(16,124,16,0.05) 0%, rgba(76,175,80,0.05) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(16,124,16,0.2);
+        }
+
+        .feature-title {
+            font-size: clamp(18px, 3vw, 20px);
+            font-weight: 600;
+            color: #107C10;
+            margin-bottom: 12px;
+        }
+
+        .feature-desc {
+            font-size: clamp(14px, 2vw, 16px);
+            color: #424242;
+            line-height: 1.6;
+        }
+
+        .navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            z-index: 100;
+            background: rgba(31, 31, 31, 0.05);
+            padding: 10px 20px;
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                bottom: 15px;
+                gap: 10px;
+                width: calc(100% - 40px);
+                justify-content: space-between;
+                padding: 8px 15px;
+            }
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248,249,250,0.95) 100%);
+            border: 2px solid rgba(16,124,16,0.3);
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #1f1f1f;
+            font-size: 14px;
+            min-width: 100px;
+            touch-action: manipulation;
+        }
+
+        .nav-btn:hover {
+            background: linear-gradient(135deg, #107C10 0%, #4CAF50 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .nav-btn:active {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .nav-btn {
+                padding: 10px 16px;
+                font-size: 13px;
+                min-width: 80px;
+            }
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-indicators {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .slide-indicators {
+                right: 10px;
+                gap: 8px;
+            }
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(16,124,16,0.3);
+            touch-action: manipulation;
+        }
+
+        @media (max-width: 768px) {
+            .indicator {
+                width: 10px;
+                height: 10px;
+            }
+        }
+
+        .indicator.active {
+            background: linear-gradient(135deg, #107C10 0%, #4CAF50 100%);
+            transform: scale(1.3);
+            box-shadow: 0 4px 15px rgba(16,124,16,0.4);
+        }
+
+        @media (max-width: 768px) {
+            .indicator.active {
+                transform: scale(1.2);
+            }
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bad-practice {
+            background: linear-gradient(135deg, rgba(209,52,56,0.05) 0%, rgba(255,107,107,0.05) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(209,52,56,0.3);
+        }
+
+        .good-practice {
+            background: linear-gradient(135deg, rgba(16,124,16,0.05) 0%, rgba(76,175,80,0.05) 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid rgba(16,124,16,0.3);
+        }
+
+        .practice-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .bad-practice .practice-title {
+            color: #D13438;
+        }
+
+        .good-practice .practice-title {
+            color: #107C10;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: clamp(14px, 2vw, 16px);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%);
+            font-weight: 600;
+            color: #107C10;
+        }
+
+        tr:hover {
+            background: rgba(16,124,16,0.03);
+        }
+
+        .three-column {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .three-column {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        
+    <!-- Slide 1: Title -->
+    <div class="slide active slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">1 / 18</div>
+        </div>
+
+        <h1 style="font-size: clamp(28px, 5vw, 2.8em); margin-bottom: 0.3em; line-height: 1.2;">
+            Power Query Secrets:<br>Unlocking Low-Code Data Transformation
+        </h1>
+
+        <p class="subtitle" style="font-size: 1.2em; margin-top: 0; margin-bottom: 1.2em;">
+            90-Minute Deep Dive into the Magic Beyond the Basics
+        </p>
+
+        <div class="visual-box" style="font-size: 1.1em; background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%); padding: 1.2em; border-radius: 10px; margin-bottom: 1.2em; border: 2px solid rgba(16,124,16,0.3);">
+            <strong>🎯 Focus:</strong> Best Practices • Hidden Tricks • Real-World Patterns<br>
+            <strong>💼 Platform:</strong> Power BI • Dataflows • Excel
+        </div>
+
+        <div class="author" style="font-size: 1em; color: #555; line-height: 1.8;">
+            <strong>Speaker: Chris Cusumano</strong><br>
+            <em>Business Intelligence Architect @ Quickbase</em><br>
+            Making analytics approachable and actionable since 2018 🚀
+        </div>
+    </div>
+
+    <!-- Slide 2: Agenda -->
+    <div class="slide slide-info">
+        <div class="slide-header">
+            <div class="slide-number">2 / 18</div>
+        </div>
+        <h2>📋 Agenda: What We'll Cover</h2>
+        <div class="subtitle">A Journey Through Power Query Mastery</div>
+        
+        <div class="two-column" style="grid-template-columns: 1fr;">
+            <div class="feature-card" style="padding: 25px;">
+                <ul class="feature-list">
+                    <li><span class="checkmark">✓</span> <strong>The Foundation:</strong> Why Power Query is Critical</li>
+                    <li><span class="checkmark">✓</span> <strong>Parameter Magic:</strong> Dynamic & Flexible Queries</li>
+                    <li><span class="checkmark">✓</span> <strong>Query Folding:</strong> Performance at Scale</li>
+                    <li><span class="checkmark">✓</span> <strong>Error Handling:</strong> Bulletproof Your Transformations</li>
+                    <li><span class="checkmark">✓</span> <strong>Custom Functions:</strong> Reusable Logic Patterns</li>
+                    <li><span class="checkmark">✓</span> <strong>Advanced M:</strong> List, Record & Table Functions</li>
+                    <li><span class="checkmark">✓</span> <strong>Table Operations:</strong> Merge, Append & Group Magic</li>
+                    <li><span class="checkmark">✓</span> <strong>Type System:</strong> Proper Data Types Matter</li>
+                    <li><span class="checkmark">✓</span> <strong>Date Intelligence:</strong> Calendar Tables & Beyond</li>
+                    <li><span class="checkmark">✓</span> <strong>Debugging:</strong> Finding & Fixing Issues Fast</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tip-box" style="text-align: center; margin-top: 25px;">
+            <strong>💡 Interactive Session:</strong> Feel free to ask questions as we go!<br>
+            Use arrow keys ← → or navigation buttons to move through slides
+        </div>
+    </div>
+
+    <!-- Slide 3: Why Power Query Matters -->
+    <div class="slide slide-success">
+        <div class="slide-header">
+            <div class="slide-number">3 / 18</div>
+        </div>
+        <h2>🎯 Why Power Query is Where It All Begins</h2>
+        
+        <div class="highlight-text">
+            "Power Query is where most BI solutions truly begin. Power BI wouldn't be what it is today without the flexibility and magic of Power Query."
+        </div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">🔥 The Reality</div>
+                <ul class="feature-list">
+                    <li><span class="checkmark">✓</span> Upstream transformations don't always exist</li>
+                    <li><span class="checkmark">✓</span> Data sources are messy</li>
+                    <li><span class="checkmark">✓</span> Requirements change constantly</li>
+                    <li><span class="checkmark">✓</span> Self-service BI needs flexibility</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ The Power</div>
+                <ul class="feature-list">
+                    <li><span class="star">★</span> Low-code transformation</li>
+                    <li><span class="star">★</span> 400+ built-in connectors</li>
+                    <li><span class="star">★</span> Incremental refresh support</li>
+                    <li><span class="star">★</span> Shared across platforms</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="visual-box">
+            <strong>🎬 Demo Note:</strong> We'll see practical examples of each concept throughout this session
+        </div>
+    </div>
+
+    <!-- Slide 4: Parameters - The Foundation -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">4 / 18</div>
+        </div>
+        <h2>🔧 Parameter Magic: Dynamic Everything</h2>
+        
+        <div class="tip-box">
+            <strong>💡 Secret #1:</strong> Parameters make your queries infinitely more flexible and reusable
+        </div>
+
+        <h3>Why Use Parameters?</h3>
+        <ul class="feature-list">
+            <li><span class="checkmark">✓</span> Change data sources without editing queries</li>
+            <li><span class="checkmark">✓</span> Build environment-specific solutions (Dev/Test/Prod)</li>
+            <li><span class="checkmark">✓</span> Create dynamic date ranges and filters</li>
+            <li><span class="checkmark">✓</span> Enable user-driven scenarios</li>
+        </ul>
+
+        <div class="code-box">
+<code>// Create a parameter for environment
+ServerName = "PROD-SERVER" <span class="code-comment">// Change to "DEV-SERVER" easily</span>
+
+// Use it in your connection
+Source = Sql.Database(ServerName, "Database")
+
+// Date parameter for rolling windows
+DaysBack = 90
+StartDate = Date.AddDays(DateTime.LocalNow(), -DaysBack)</code>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Pro Tip:</strong> Always document your parameters with descriptions. Future you will thank present you!
+        </div>
+    </div>
+
+    <!-- Slide 5: Query Folding -->
+    <div class="slide slide-advanced">
+        <div class="slide-header">
+            <div class="slide-number">5 / 18</div>
+        </div>
+        <h2>🚀 Query Folding: The Performance Game Changer</h2>
+        
+        <div class="highlight-text">
+            Query Folding = Power Query pushes transformations to the data source. Instead of loading millions of rows and filtering in memory, the database does the work!
+        </div>
+
+        <h3>When Query Folding Works:</h3>
+        <div class="comparison-grid">
+            <div class="good-practice">
+                <div class="practice-title">✓ Foldable Operations</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Filter rows</li>
+                    <li><span class="checkmark">✓</span> Remove columns</li>
+                    <li><span class="checkmark">✓</span> Rename columns</li>
+                    <li><span class="checkmark">✓</span> Sort (top N)</li>
+                    <li><span class="checkmark">✓</span> Merge queries (joins)</li>
+                    <li><span class="checkmark">✓</span> Group by</li>
+                </ul>
+            </div>
+            <div class="bad-practice">
+                <div class="practice-title">✗ Breaks Folding</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="warning">✗</span> Add column from examples</li>
+                    <li><span class="warning">✗</span> Custom columns with M</li>
+                    <li><span class="warning">✗</span> Merge from different sources</li>
+                    <li><span class="warning">✗</span> Some text operations</li>
+                    <li><span class="warning">✗</span> Table.Buffer()</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 How to Check:</strong> Right-click a step → "View Native Query". If it's grayed out, folding stopped!
+        </div>
+    </div>
+
+    <!-- Slide 6: Error Handling -->
+    <div class="slide slide-warning">
+        <div class="slide-header">
+            <div class="slide-number">6 / 18</div>
+        </div>
+        <h2>🛡️ Error Handling: Bulletproof Your Queries</h2>
+        
+        <div class="warning-box">
+            <strong>The Problem:</strong> One missing column, one renamed field, one unexpected null value = entire refresh fails
+        </div>
+
+        <h3>Secret #2: Use try...otherwise Everywhere</h3>
+        
+        <div class="code-box">
+<code>// Instead of this (fragile):
+Source = Excel.Workbook(File.Contents("C:\Data\Sales.xlsx"))
+
+// Do this (resilient):
+Source = <strong>try</strong> Excel.Workbook(File.Contents("C:\Data\Sales.xlsx")) 
+         <strong>otherwise</strong> #table({"Error"}, {{"File not found"}})
+
+// Handle missing columns gracefully:
+AddColumn = <strong>try</strong> Table.AddColumn(Source, "FullName", 
+    each [FirstName] & " " & [LastName])
+    <strong>otherwise</strong> Source
+
+// Replace errors with defaults:
+CleanData = Table.ReplaceErrorValues(
+    Source, 
+    {{"Amount", 0}, {"Date", Date.From("1900-01-01")}}
+)</code>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Pro Pattern:</strong> Create error logging tables to track which rows failed and why!
+        </div>
+    </div>
+
+    <!-- Slide 7: Custom Functions -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">7 / 18</div>
+        </div>
+        <h2>🔨 Custom Functions: Write Once, Use Everywhere</h2>
+        
+        <div class="highlight-text">
+            Stop copying and pasting transformations! Custom functions make your code DRY (Don't Repeat Yourself) and maintainable.
+        </div>
+
+        <h3>Secret #3: Turn Repeated Logic into Functions</h3>
+        
+        <div class="code-box">
+<code>// Create a reusable cleaning function
+<strong>(tbl as table) as table =></strong>
+let
+    RemoveSpaces = Table.TransformColumns(tbl, 
+        List.Transform(Table.ColumnNames(tbl), 
+            each {_, Text.Trim})),
+    
+    UpperCase = Table.TransformColumns(RemoveSpaces,
+        List.Transform(Table.ColumnNames(RemoveSpaces), 
+            each {_, Text.Upper})),
+    
+    RemoveNulls = Table.SelectRows(UpperCase, 
+        each List.NonNullCount(Record.ToList(_)) > 0)
+in
+    RemoveNulls
+
+// Use it on any table:
+CleanedCustomers = fnCleanTable(RawCustomers)
+CleanedProducts = fnCleanTable(RawProducts)</code>
+        </div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">✓ Benefits</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Consistent logic</li>
+                    <li><span class="checkmark">✓</span> Easy to update</li>
+                    <li><span class="checkmark">✓</span> Testable</li>
+                    <li><span class="checkmark">✓</span> Shareable</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ Use Cases</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Data cleaning</li>
+                    <li><span class="star">★</span> API calls</li>
+                    <li><span class="star">★</span> Type conversions</li>
+                    <li><span class="star">★</span> Business rules</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 8: Advanced M - Lists & Records -->
+    <div class="slide slide-advanced">
+        <div class="slide-header">
+            <div class="slide-number">8 / 18</div>
+        </div>
+        <h2>🧠 Advanced M: Lists, Records & Tables</h2>
+        
+        <div class="tip-box">
+            <strong>Secret #4:</strong> Understanding M data structures unlocks powerful patterns familiar to SQL and DAX users
+        </div>
+
+        <h3>The Three Core Types:</h3>
+        
+        <table>
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>Example</th>
+            </tr>
+            <tr>
+                <td><strong>List</strong></td>
+                <td>Ordered collection of values</td>
+                <td>{1, 2, 3, "text"}</td>
+            </tr>
+            <tr>
+                <td><strong>Record</strong></td>
+                <td>Key-value pairs (like a row)</td>
+                <td>[Name="John", Age=30]</td>
+            </tr>
+            <tr>
+                <td><strong>Table</strong></td>
+                <td>Collection of records</td>
+                <td>#table(...)</td>
+            </tr>
+        </table>
+
+        <div class="code-box">
+<code>// Powerful List functions:
+AllDates = {Date.From("2024-01-01")..Date.From("2024-12-31")}
+UniqueValues = List.Distinct(Source[Category])
+FilledList = List.Generate(() => 1, each _ <= 100, each _ + 1)
+
+// Record magic:
+FirstRow = Table.First(Source)  <span class="code-comment">// Returns a record</span>
+FieldValue = FirstRow[ColumnName]
+AllFields = Record.FieldNames(FirstRow)
+
+// Table operations:
+NewTable = #table(
+    {"ID", "Name", "Value"},
+    {{1, "A", 100}, {2, "B", 200}}
+)</code>
+        </div>
+    </div>
+
+    <!-- Slide 9: Table Operations -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">9 / 18</div>
+        </div>
+        <h2>🔄 Table Operations: Merge, Append & Group</h2>
+        
+        <h3>Merge (Joins) - SQL Users Will Love This</h3>
+        
+        <div class="code-box">
+<code>// Inner join
+Merged = Table.NestedJoin(
+    Customers, {"CustomerID"}, 
+    Orders, {"CustomerID"}, 
+    "Orders", 
+    <strong>JoinKind.Inner</strong>
+)
+
+// Left anti join (find unmatched)
+UnmatchedCustomers = Table.NestedJoin(
+    Customers, {"CustomerID"},
+    Orders, {"CustomerID"},
+    "Orders",
+    <strong>JoinKind.LeftAnti</strong>  <span class="code-comment">// Customers with no orders!</span>
+)</code>
+        </div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">Join Types</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Inner</li>
+                    <li><span class="checkmark">✓</span> Left Outer</li>
+                    <li><span class="checkmark">✓</span> Right Outer</li>
+                    <li><span class="checkmark">✓</span> Full Outer</li>
+                    <li><span class="checkmark">✓</span> Left Anti</li>
+                    <li><span class="checkmark">✓</span> Right Anti</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ Pro Tips</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Use anti joins for data quality checks</li>
+                    <li><span class="star">★</span> Expand only needed columns</li>
+                    <li><span class="star">★</span> Consider query folding</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control and better folding
+        </div>
+    </div>
+
+    <!-- Slide 10: Group By Mastery -->
+    <div class="slide slide-success">
+        <div class="slide-header">
+            <div class="slide-number">10 / 18</div>
+        </div>
+        <h2>📊 Group By: Beyond Simple Aggregations</h2>
+        
+        <div class="highlight-text">
+            Group By in Power Query is incredibly powerful - it's like SQL GROUP BY on steroids!
+        </div>
+
+        <div class="code-box">
+<code>// Simple aggregation
+Grouped = Table.Group(
+    Source, 
+    {"Category"}, 
+    {
+        {"TotalSales", each List.Sum([Amount]), type number},
+        {"RowCount", each Table.RowCount(_), type number},
+        {"AvgPrice", each List.Average([Price]), type number}
+    }
+)
+
+// Advanced: Keep all rows as nested tables
+GroupedWithDetails = Table.Group(
+    Source,
+    {"Category"},
+    {
+        {"AllRows", each _, type table},
+        {"TopCustomer", each List.Max([Sales]), type number},
+        {"DateRange", each List.Max([Date]) - List.Min([Date]), type duration}
+    }
+)</code>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #6:</strong> Group with "each _" to keep all rows, then use Table operations on the nested tables!
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Performance Note:</strong> Grouping breaks query folding, so filter before grouping when possible
+        </div>
+    </div>
+
+    <!-- Slide 11: Type System -->
+    <div class="slide slide-info">
+        <div class="slide-header">
+            <div class="slide-number">11 / 18</div>
+        </div>
+        <h2>🎯 The Type System: Why It Matters</h2>
+        
+        <div class="warning-box">
+            <strong>Common Mistake:</strong> Ignoring data types leads to slow refreshes, unexpected errors, and wrong calculations
+        </div>
+
+        <h3>Secret #7: Set Types Early and Explicitly</h3>
+
+        <div class="two-column">
+            <div class="bad-practice">
+                <div class="practice-title">❌ Don't Do This</div>
+                <div class="code-box" style="font-size: 12px;">
+<code>// Let Power Query guess
+Source = Excel.Workbook(...)
+
+// All columns as "Any"
+// Slow performance
+// Potential errors</code>
+                </div>
+            </div>
+            <div class="good-practice">
+                <div class="practice-title">✓ Do This</div>
+                <div class="code-box" style="font-size: 12px;">
+<code>// Explicit types
+TypedTable = Table.TransformColumnTypes(
+    Source,
+    {
+        {"ID", Int64.Type},
+        {"Name", type text},
+        {"Date", type date},
+        {"Amount", type number},
+        {"IsActive", type logical}
+    }
+)</code>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-list">
+            <li><span class="checkmark">✓</span> <strong>Better Performance:</strong> Typed data processes faster</li>
+            <li><span class="checkmark">✓</span> <strong>Query Folding:</strong> Type operations often fold</li>
+            <li><span class="checkmark">✓</span> <strong>Error Detection:</strong> Catch issues early</li>
+            <li><span class="checkmark">✓</span> <strong>DAX Compatibility:</strong> Smooth handoff to data model</li>
+        </div>
+    </div>
+
+    <!-- Slide 12: Date Intelligence -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">12 / 18</div>
+        </div>
+        <h2>📅 Date Intelligence in Power Query</h2>
+        
+        <div class="highlight-text">
+            Create robust date tables in Power Query instead of DAX - it's faster and more flexible!
+        </div>
+
+        <div class="code-box">
+<code>// Generate date table
+let
+    StartDate = #date(2020, 1, 1),
+    EndDate = Date.From(DateTime.LocalNow()),
+    
+    // Generate all dates
+    DayCount = Duration.Days(EndDate - StartDate) + 1,
+    DateList = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
+    
+    // Convert to table and add columns
+    DateTable = Table.FromList(DateList, Splitter.SplitByNothing()),
+    RenamedColumn = Table.RenameColumns(DateTable, {{"Column1", "Date"}}),
+    
+    // Add intelligent columns
+    AddedYear = Table.AddColumn(RenamedColumn, "Year", each Date.Year([Date])),
+    AddedQuarter = Table.AddColumn(AddedYear, "Quarter", each "Q" & Number.ToText(Date.QuarterOfYear([Date]))),
+    AddedMonth = Table.AddColumn(AddedQuarter, "Month", each Date.MonthName([Date])),
+    AddedWeek = Table.AddColumn(AddedMonth, "WeekNum", each Date.WeekOfYear([Date])),
+    AddedDayOfWeek = Table.AddColumn(AddedWeek, "DayOfWeek", each Date.DayOfWeekName([Date])),
+    
+    // Fiscal year (July start)
+    AddedFiscalYear = Table.AddColumn(AddedDayOfWeek, "FiscalYear", 
+        each if Date.Month([Date]) >= 7 then Date.Year([Date]) + 1 else Date.Year([Date]))
+in
+    AddedFiscalYear</code>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #8:</strong> Use List.Dates() instead of looping - it's 100x faster!
+        </div>
+    </div>
+
+    <!-- Slide 13: Debugging Techniques -->
+    <div class="slide slide-warning">
+        <div class="slide-header">
+            <div class="slide-number">13 / 18</div>
+        </div>
+        <h2>🔍 Debugging: Find & Fix Issues Fast</h2>
+        
+        <h3>Secret #9: Power Query Debugging Toolkit</h3>
+
+        <div class="three-column">
+            <div class="feature-card">
+                <div class="feature-title">🎯 Formula Bar</div>
+                <div class="feature-desc">Use it! Shows exact M code for each step. Click to edit.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">👁️ Column Quality</div>
+                <div class="feature-desc">Shows valid, error, and empty percentages per column.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">📊 Column Profile</div>
+                <div class="feature-desc">Reveals distribution, min, max, unique values.</div>
+            </div>
+        </div>
+
+        <div class="code-box">
+<code>// Add intermediate validation steps
+ValidationStep = Table.RowCount(PreviousStep),
+
+// Add error checking columns
+AddErrorCheck = Table.AddColumn(Source, "HasError", 
+    each try [Amount] / [Quantity] otherwise "ERROR"),
+
+// Use Table.Profile for data quality
+ProfileData = Table.Profile(Source),
+
+// Create custom error messages
+CustomError = if SomeCondition then 
+    error Error.Record("MyError", "Expected value not found", "Details here")
+    else OriginalValue</code>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Remember:</strong> Remove or comment out debugging steps before production!
+        </div>
+    </div>
+
+    <!-- Slide 14: Performance Optimization -->
+    <div class="slide slide-advanced">
+        <div class="slide-header">
+            <div class="slide-number">14 / 18</div>
+        </div>
+        <h2>⚡ Performance Optimization Secrets</h2>
+        
+        <div class="highlight-text">
+            The difference between a 5-minute refresh and a 30-second refresh often comes down to these techniques!
+        </div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">🚀 DO These</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Filter early (close to source)</li>
+                    <li><span class="checkmark">✓</span> Remove unnecessary columns</li>
+                    <li><span class="checkmark">✓</span> Preserve query folding</li>
+                    <li><span class="checkmark">✓</span> Use Table.Buffer strategically</li>
+                    <li><span class="checkmark">✓</span> Disable query load when not needed</li>
+                    <li><span class="checkmark">✓</span> Use staging queries</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🛑 AVOID These</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="warning">✗</span> Loading massive tables to UI</li>
+                    <li><span class="warning">✗</span> Unnecessary Table.Buffer</li>
+                    <li><span class="warning">✗</span> Complex custom columns</li>
+                    <li><span class="warning">✗</span> Multiple merges on same data</li>
+                    <li><span class="warning">✗</span> Sorting when not needed</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #10:</strong> Use "Reference" not "Duplicate" when you want to reuse a query - it avoids reprocessing!
+        </div>
+
+        <div class="code-box">
+<code>// Disable load for staging queries
+// Right-click query → Uncheck "Enable Load"
+
+// Buffer lookup tables (small reference tables)
+BufferedLookup = Table.Buffer(SmallDimensionTable)
+
+// Then use in merge - much faster!
+Merged = Table.NestedJoin(FactTable, {"ID"}, BufferedLookup, {"ID"}, ...)</code>
+        </div>
+    </div>
+
+    <!-- Slide 15: Hidden Gems -->
+    <div class="slide slide-tips">
+        <div class="slide-header">
+            <div class="slide-number">15 / 18</div>
+        </div>
+        <h2>💎 Hidden Gems & Lesser-Known Tricks</h2>
+        
+        <div class="tip-box">
+            These are the secrets that separate beginners from power users!
+        </div>
+
+        <div class="code-box">
+<code>// 1. Dynamic column selection
+DynamicSelect = Table.SelectColumns(Source, 
+    List.Select(Table.ColumnNames(Source), 
+        each Text.Contains(_, "Amount") or Text.Contains(_, "Total")))
+
+// 2. Unpivot OTHER columns (keeps ID columns, unpivots rest)
+UnpivotOther = Table.UnpivotOtherColumns(Source, {"ID", "Name"}, "Attribute", "Value")
+
+// 3. Table.TransformColumns with List.Transform (transform ALL columns at once)
+TrimAll = Table.TransformColumns(Source,
+    List.Transform(Table.ColumnNames(Source), each {_, Text.Trim}))
+
+// 4. List.Accumulate (like REDUCE in other languages)
+RunningTotal = List.Accumulate({1,2,3,4,5}, 0, (state, current) => state + current)
+
+// 5. Table.Schema (get metadata about table)
+SchemaInfo = Table.Schema(Source)
+
+// 6. Expression.Evaluate (dynamic M code execution)
+DynamicCode = Expression.Evaluate("1 + 1", [])</code>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Use Expression.Evaluate Carefully:</strong> It's powerful but can break query folding and hurt performance
+        </div>
+    </div>
+
+    <!-- Slide 16: Real-World Patterns -->
+    <div class="slide slide-success">
+        <div class="slide-header">
+            <div class="slide-number">16 / 18</div>
+        </div>
+        <h2>🏗️ Real-World Patterns That Save Time</h2>
+        
+        <h3>Pattern 1: Incremental Load Simulation</h3>
+        <div class="code-box">
+<code>// Filter based on parameter for incremental-like behavior
+MaxDate = List.Max(ExistingData[LoadDate]),
+NewData = Table.SelectRows(Source, each [ModifiedDate] > MaxDate)</code>
+        </div>
+
+        <h3>Pattern 2: API Pagination Handler</h3>
+        <div class="code-box">
+<code>GetAllPages = (url as text) as table =>
+let
+    GetPage = (pageUrl as text) =>
+        let
+            Response = Json.Document(Web.Contents(pageUrl)),
+            Data = Response[data],
+            NextPage = Response[next_page]
+        in
+            Data & (if NextPage <> null then @GetPage(NextPage) else {}),
+    AllData = GetPage(url)
+in
+    Table.FromRecords(AllData)</code>
+        </div>
+
+        <h3>Pattern 3: Self-Healing Column References</h3>
+        <div class="code-box">
+<code>// Instead of hard-coded [Column1]
+SafeGetColumn = (tbl, colName) =>
+    if List.Contains(Table.ColumnNames(tbl), colName) 
+    then Table.Column(tbl, colName)
+    else null</code>
+        </div>
+    </div>
+
+    <!-- Slide 17: Best Practices Checklist -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">17 / 18</div>
+        </div>
+        <h2>✅ Best Practices Checklist</h2>
+        
+        <div class="subtitle">Use this as your Power Query quality gate!</div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">📋 Query Design</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Use parameters for flexibility</li>
+                    <li><span class="checkmark">✓</span> Document with step names</li>
+                    <li><span class="checkmark">✓</span> Keep queries modular</li>
+                    <li><span class="checkmark">✓</span> Use folders to organize</li>
+                    <li><span class="checkmark">✓</span> Disable load for staging queries</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ Performance</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Maintain query folding</li>
+                    <li><span class="checkmark">✓</span> Filter early and often</li>
+                    <li><span class="checkmark">✓</span> Remove unused columns</li>
+                    <li><span class="checkmark">✓</span> Set data types explicitly</li>
+                    <li><span class="checkmark">✓</span> Use references not duplicates</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">🛡️ Reliability</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Add error handling (try/otherwise)</li>
+                    <li><span class="checkmark">✓</span> Validate data quality</li>
+                    <li><span class="checkmark">✓</span> Test with edge cases</li>
+                    <li><span class="checkmark">✓</span> Handle missing columns</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🔧 Maintainability</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Create reusable functions</li>
+                    <li><span class="checkmark">✓</span> Use clear naming conventions</li>
+                    <li><span class="checkmark">✓</span> Comment complex logic</li>
+                    <li><span class="checkmark">✓</span> Version control your PBIX</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 18: Resources & Closing -->
+    <div class="slide slide-info">
+        <div class="slide-header">
+            <div class="slide-number">18 / 18</div>
+        </div>
+        <h2>🎓 Thank You! Resources & Next Steps</h2>
+        
+        <div class="highlight-text" style="text-align: center; font-size: 22px;">
+            You're now equipped to handle whatever chaos your data throws at you! 🚀
+        </div>
+
+        <h3>📚 Learning Resources:</h3>
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">📖 Essential Reading</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Microsoft Power Query M Reference</li>
+                    <li><span class="star">★</span> PowerQuery.how</li>
+                    <li><span class="star">★</span> SQLBI.com articles</li>
+                    <li><span class="star">★</span> Chris Webb's BI Blog</li>
+                    <li><span class="star">★</span> Guy in a Cube (YouTube)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🤝 Community</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Power BI Community Forum</li>
+                    <li><span class="star">★</span> Reddit r/PowerBI</li>
+                    <li><span class="star">★</span> LinkedIn Power BI Groups</li>
+                    <li><span class="star">★</span> Local user groups</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="three-column" style="margin-top: 30px;">
+            <div class="feature-card">
+                <div class="feature-title">🎯 Practice</div>
+                <div class="feature-desc">Apply these patterns to your real data - that's where the magic happens!</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🔍 Explore</div>
+                <div class="feature-desc">Use the Formula Bar and Advanced Editor to learn how Power Query works</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">🤝 Share</div>
+                <div class="feature-desc">Help others by sharing your discoveries and solutions</div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 30px; padding: 25px; background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%); border-radius: 12px; border: 2px solid rgba(16,124,16,0.3);">
+            <h3 style="margin-bottom: 15px;">📧 Stay Connected</h3>
+            <p style="font-size: 18px; color: #333; margin-bottom: 10px;">
+                <strong>Chris Cusumano</strong><br>
+                Business Intelligence Architect @ Quickbase
+            </p>
+            <p style="font-size: 16px; color: #666;">
+                Questions? Find me on LinkedIn or at your local Power BI user group!
+            </p>
+        </div>
+
+        <div class="visual-box" style="margin-top: 20px;">
+            <strong>🎬 Demo Files & Code Samples:</strong> Available on GitHub<br>
+            github.com/BeSmarterWithData/PowerQuerySecrets
+        </div>
+    </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
+        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+    </div>
+
+    <!-- Slide Indicators -->
+    <div class="slide-indicators">
+        <div class="indicator active" onclick="goToSlide(0)"></div>
+        <div class="indicator" onclick="goToSlide(1)"></div>
+        <div class="indicator" onclick="goToSlide(2)"></div>
+        <div class="indicator" onclick="goToSlide(3)"></div>
+        <div class="indicator" onclick="goToSlide(4)"></div>
+        <div class="indicator" onclick="goToSlide(5)"></div>
+        <div class="indicator" onclick="goToSlide(6)"></div>
+        <div class="indicator" onclick="goToSlide(7)"></div>
+        <div class="indicator" onclick="goToSlide(8)"></div>
+        <div class="indicator" onclick="goToSlide(9)"></div>
+        <div class="indicator" onclick="goToSlide(10)"></div>
+        <div class="indicator" onclick="goToSlide(11)"></div>
+        <div class="indicator" onclick="goToSlide(12)"></div>
+        <div class="indicator" onclick="goToSlide(13)"></div>
+        <div class="indicator" onclick="goToSlide(14)"></div>
+        <div class="indicator" onclick="goToSlide(15)"></div>
+        <div class="indicator" onclick="goToSlide(16)"></div>
+        <div class="indicator" onclick="goToSlide(17)"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+            
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+            
+            const prevBtn = document.querySelector('.navigation .nav-btn:first-child');
+            const nextBtn = document.querySelector('.navigation .nav-btn:last-child');
+            
+            prevBtn.disabled = index === 0;
+            nextBtn.disabled = index === totalSlides - 1;
+            
+            // Scroll to top of slide
+            slides[index].scrollTop = 0;
+        }
+
+        function nextSlide() {
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                showSlide(currentSlide);
+            }
+        }
+
+        function previousSlide() {
+            if (currentSlide > 0) {
+                currentSlide--;
+                showSlide(currentSlide);
+            }
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                goToSlide(0);
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                goToSlide(totalSlides - 1);
+            }
+        });
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
 </html>

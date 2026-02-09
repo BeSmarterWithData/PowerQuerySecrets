@@ -505,7 +505,7 @@
     <!-- Slide 1: Title -->
     <div class="slide active slide-pq">
         <div class="slide-header">
-            <div class="slide-number">1 / 18</div>
+            <div class="slide-number">1 / 14</div>
         </div>
 
         <h1 style="font-size: clamp(28px, 5vw, 2.8em); margin-bottom: 0.3em; line-height: 1.2;">
@@ -531,7 +531,7 @@
     <!-- Slide 2: Agenda -->
     <div class="slide slide-info">
         <div class="slide-header">
-            <div class="slide-number">2 / 18</div>
+            <div class="slide-number">2 / 14</div>
         </div>
         <h2>📋 Agenda: What We'll Cover</h2>
         <div class="subtitle">A Journey Through Power Query Mastery</div>
@@ -541,14 +541,14 @@
                 <ul class="feature-list">
                     <li><span class="checkmark">✓</span> <strong>The Foundation:</strong> Why Power Query is Critical</li>
                     <li><span class="checkmark">✓</span> <strong>Parameter Magic:</strong> Dynamic & Flexible Queries</li>
-                    <li><span class="checkmark">✓</span> <strong>Query Folding:</strong> Performance at Scale</li>
                     <li><span class="checkmark">✓</span> <strong>Error Handling:</strong> Bulletproof Your Transformations</li>
                     <li><span class="checkmark">✓</span> <strong>Custom Functions:</strong> Reusable Logic Patterns</li>
-                    <li><span class="checkmark">✓</span> <strong>Advanced M:</strong> List, Record & Table Functions</li>
                     <li><span class="checkmark">✓</span> <strong>Table Operations:</strong> Merge, Append & Group Magic</li>
                     <li><span class="checkmark">✓</span> <strong>Type System:</strong> Proper Data Types Matter</li>
                     <li><span class="checkmark">✓</span> <strong>Date Intelligence:</strong> Calendar Tables & Beyond</li>
                     <li><span class="checkmark">✓</span> <strong>Debugging:</strong> Finding & Fixing Issues Fast</li>
+                    <li><span class="checkmark">✓</span> <strong>Performance Optimization:</strong> Speed Up Your Refreshes</li>
+                    <li><span class="checkmark">✓</span> <strong>Duplicates vs References:</strong> Understanding the Difference</li>
                 </ul>
             </div>
         </div>
@@ -562,7 +562,7 @@
     <!-- Slide 3: Why Power Query Matters -->
     <div class="slide slide-success">
         <div class="slide-header">
-            <div class="slide-number">3 / 18</div>
+            <div class="slide-number">3 / 14</div>
         </div>
         <h2>🎯 Why Power Query is Where It All Begins</h2>
         
@@ -599,7 +599,7 @@
     <!-- Slide 4: Parameters - The Foundation -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">4 / 18</div>
+            <div class="slide-number">4 / 14</div>
         </div>
         <h2>🔧 Parameter Magic: Dynamic Everything</h2>
         
@@ -615,68 +615,15 @@
             <li><span class="checkmark">✓</span> Enable user-driven scenarios</li>
         </ul>
 
-        <div class="code-box">
-<code>// Create a parameter for environment
-ServerName = "PROD-SERVER" <span class="code-comment">// Change to "DEV-SERVER" easily</span>
-
-// Use it in your connection
-Source = Sql.Database(ServerName, "Database")
-
-// Date parameter for rolling windows
-DaysBack = 90
-StartDate = Date.AddDays(DateTime.LocalNow(), -DaysBack)</code>
-        </div>
-
         <div class="warning-box">
             <strong>⚠️ Pro Tip:</strong> Always document your parameters with descriptions. Future you will thank present you!
         </div>
     </div>
 
-    <!-- Slide 5: Query Folding -->
-    <div class="slide slide-advanced">
-        <div class="slide-header">
-            <div class="slide-number">5 / 18</div>
-        </div>
-        <h2>🚀 Query Folding: The Performance Game Changer</h2>
-        
-        <div class="highlight-text">
-            Query Folding = Power Query pushes transformations to the data source. Instead of loading millions of rows and filtering in memory, the database does the work!
-        </div>
-
-        <h3>When Query Folding Works:</h3>
-        <div class="comparison-grid">
-            <div class="good-practice">
-                <div class="practice-title">✓ Foldable Operations</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Filter rows</li>
-                    <li><span class="checkmark">✓</span> Remove columns</li>
-                    <li><span class="checkmark">✓</span> Rename columns</li>
-                    <li><span class="checkmark">✓</span> Sort (top N)</li>
-                    <li><span class="checkmark">✓</span> Merge queries (joins)</li>
-                    <li><span class="checkmark">✓</span> Group by</li>
-                </ul>
-            </div>
-            <div class="bad-practice">
-                <div class="practice-title">✗ Breaks Folding</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="warning">✗</span> Add column from examples</li>
-                    <li><span class="warning">✗</span> Custom columns with M</li>
-                    <li><span class="warning">✗</span> Merge from different sources</li>
-                    <li><span class="warning">✗</span> Some text operations</li>
-                    <li><span class="warning">✗</span> Table.Buffer()</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="tip-box">
-            <strong>💡 How to Check:</strong> Right-click a step → "View Native Query". If it's grayed out, folding stopped!
-        </div>
-    </div>
-
-    <!-- Slide 6: Error Handling -->
+    <!-- Slide 5: Error Handling -->
     <div class="slide slide-warning">
         <div class="slide-header">
-            <div class="slide-number">6 / 18</div>
+            <div class="slide-number">5 / 14</div>
         </div>
         <h2>🛡️ Error Handling: Bulletproof Your Queries</h2>
         
@@ -686,25 +633,6 @@ StartDate = Date.AddDays(DateTime.LocalNow(), -DaysBack)</code>
 
         <h3>Secret #2: Use try...otherwise Everywhere</h3>
         
-        <div class="code-box">
-<code>// Instead of this (fragile):
-Source = Excel.Workbook(File.Contents("C:\Data\Sales.xlsx"))
-
-// Do this (resilient):
-Source = <strong>try</strong> Excel.Workbook(File.Contents("C:\Data\Sales.xlsx")) 
-         <strong>otherwise</strong> #table({"Error"}, {{"File not found"}})
-
-// Handle missing columns gracefully:
-AddColumn = <strong>try</strong> Table.AddColumn(Source, "FullName", 
-    each [FirstName] & " " & [LastName])
-    <strong>otherwise</strong> Source
-
-// Replace errors with defaults:
-CleanData = Table.ReplaceErrorValues(
-    Source, 
-    {{"Amount", 0}, {"Date", Date.From("1900-01-01")}}
-)</code>
-        </div>
 
         <div class="tip-box">
             <strong>💡 Pro Pattern:</strong> Create error logging tables to track which rows failed and why!
@@ -714,7 +642,7 @@ CleanData = Table.ReplaceErrorValues(
     <!-- Slide 7: Custom Functions -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">7 / 18</div>
+            <div class="slide-number">6 / 14</div>
         </div>
         <h2>🔨 Custom Functions: Write Once, Use Everywhere</h2>
         
@@ -724,28 +652,6 @@ CleanData = Table.ReplaceErrorValues(
 
         <h3>Secret #3: Turn Repeated Logic into Functions</h3>
         
-        <div class="code-box">
-<code>// Create a reusable cleaning function
-<strong>(tbl as table) as table =></strong>
-let
-    RemoveSpaces = Table.TransformColumns(tbl, 
-        List.Transform(Table.ColumnNames(tbl), 
-            each {_, Text.Trim})),
-    
-    UpperCase = Table.TransformColumns(RemoveSpaces,
-        List.Transform(Table.ColumnNames(RemoveSpaces), 
-            each {_, Text.Upper})),
-    
-    RemoveNulls = Table.SelectRows(UpperCase, 
-        each List.NonNullCount(Record.ToList(_)) > 0)
-in
-    RemoveNulls
-
-// Use it on any table:
-CleanedCustomers = fnCleanTable(RawCustomers)
-CleanedProducts = fnCleanTable(RawProducts)</code>
-        </div>
-
         <div class="two-column">
             <div class="feature-card">
                 <div class="feature-title">✓ Benefits</div>
@@ -768,88 +674,15 @@ CleanedProducts = fnCleanTable(RawProducts)</code>
         </div>
     </div>
 
-    <!-- Slide 8: Advanced M - Lists & Records -->
-    <div class="slide slide-advanced">
-        <div class="slide-header">
-            <div class="slide-number">8 / 18</div>
-        </div>
-        <h2>🧠 Advanced M: Lists, Records & Tables</h2>
-        
-        <div class="tip-box">
-            <strong>Secret #4:</strong> Understanding M data structures unlocks powerful patterns familiar to SQL and DAX users
-        </div>
-
-        <h3>The Three Core Types:</h3>
-        
-        <table>
-            <tr>
-                <th>Type</th>
-                <th>Description</th>
-                <th>Example</th>
-            </tr>
-            <tr>
-                <td><strong>List</strong></td>
-                <td>Ordered collection of values</td>
-                <td>{1, 2, 3, "text"}</td>
-            </tr>
-            <tr>
-                <td><strong>Record</strong></td>
-                <td>Key-value pairs (like a row)</td>
-                <td>[Name="John", Age=30]</td>
-            </tr>
-            <tr>
-                <td><strong>Table</strong></td>
-                <td>Collection of records</td>
-                <td>#table(...)</td>
-            </tr>
-        </table>
-
-        <div class="code-box">
-<code>// Powerful List functions:
-AllDates = {Date.From("2024-01-01")..Date.From("2024-12-31")}
-UniqueValues = List.Distinct(Source[Category])
-FilledList = List.Generate(() => 1, each _ <= 100, each _ + 1)
-
-// Record magic:
-FirstRow = Table.First(Source)  <span class="code-comment">// Returns a record</span>
-FieldValue = FirstRow[ColumnName]
-AllFields = Record.FieldNames(FirstRow)
-
-// Table operations:
-NewTable = #table(
-    {"ID", "Name", "Value"},
-    {{1, "A", 100}, {2, "B", 200}}
-)</code>
-        </div>
-    </div>
-
-    <!-- Slide 9: Table Operations -->
+    <!-- Slide 7: Table Operations -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">9 / 18</div>
+            <div class="slide-number">7 / 14</div>
         </div>
         <h2>🔄 Table Operations: Merge, Append & Group</h2>
         
         <h3>Merge (Joins) - SQL Users Will Love This</h3>
         
-        <div class="code-box">
-<code>// Inner join
-Merged = Table.NestedJoin(
-    Customers, {"CustomerID"}, 
-    Orders, {"CustomerID"}, 
-    "Orders", 
-    <strong>JoinKind.Inner</strong>
-)
-
-// Left anti join (find unmatched)
-UnmatchedCustomers = Table.NestedJoin(
-    Customers, {"CustomerID"},
-    Orders, {"CustomerID"},
-    "Orders",
-    <strong>JoinKind.LeftAnti</strong>  <span class="code-comment">// Customers with no orders!</span>
-)</code>
-        </div>
-
         <div class="two-column">
             <div class="feature-card">
                 <div class="feature-title">Join Types</div>
@@ -867,64 +700,20 @@ UnmatchedCustomers = Table.NestedJoin(
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="star">★</span> Use anti joins for data quality checks</li>
                     <li><span class="star">★</span> Expand only needed columns</li>
-                    <li><span class="star">★</span> Consider query folding</li>
+                    <li><span class="star">★</span> Filter before merging for better performance</li>
                 </ul>
             </div>
         </div>
 
         <div class="tip-box">
-            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control and better folding
+            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control
         </div>
     </div>
 
-    <!-- Slide 10: Group By Mastery -->
-    <div class="slide slide-success">
-        <div class="slide-header">
-            <div class="slide-number">10 / 18</div>
-        </div>
-        <h2>📊 Group By: Beyond Simple Aggregations</h2>
-        
-        <div class="highlight-text">
-            Group By in Power Query is incredibly powerful - it's like SQL GROUP BY on steroids!
-        </div>
-
-        <div class="code-box">
-<code>// Simple aggregation
-Grouped = Table.Group(
-    Source, 
-    {"Category"}, 
-    {
-        {"TotalSales", each List.Sum([Amount]), type number},
-        {"RowCount", each Table.RowCount(_), type number},
-        {"AvgPrice", each List.Average([Price]), type number}
-    }
-)
-
-// Advanced: Keep all rows as nested tables
-GroupedWithDetails = Table.Group(
-    Source,
-    {"Category"},
-    {
-        {"AllRows", each _, type table},
-        {"TopCustomer", each List.Max([Sales]), type number},
-        {"DateRange", each List.Max([Date]) - List.Min([Date]), type duration}
-    }
-)</code>
-        </div>
-
-        <div class="tip-box">
-            <strong>💡 Secret #6:</strong> Group with "each _" to keep all rows, then use Table operations on the nested tables!
-        </div>
-
-        <div class="warning-box">
-            <strong>⚠️ Performance Note:</strong> Grouping breaks query folding, so filter before grouping when possible
-        </div>
-    </div>
-
-    <!-- Slide 11: Type System -->
+    <!-- Slide 8: Type System -->
     <div class="slide slide-info">
         <div class="slide-header">
-            <div class="slide-number">11 / 18</div>
+            <div class="slide-number">8 / 14</div>
         </div>
         <h2>🎯 The Type System: Why It Matters</h2>
         
@@ -937,36 +726,17 @@ GroupedWithDetails = Table.Group(
         <div class="two-column">
             <div class="bad-practice">
                 <div class="practice-title">❌ Don't Do This</div>
-                <div class="code-box" style="font-size: 12px;">
-<code>// Let Power Query guess
-Source = Excel.Workbook(...)
-
-// All columns as "Any"
-// Slow performance
-// Potential errors</code>
-                </div>
+                <p style="font-size: 12px; padding: 10px;">Let Power Query guess types - all columns as "Any", slow performance, potential errors</p>
             </div>
             <div class="good-practice">
                 <div class="practice-title">✓ Do This</div>
-                <div class="code-box" style="font-size: 12px;">
-<code>// Explicit types
-TypedTable = Table.TransformColumnTypes(
-    Source,
-    {
-        {"ID", Int64.Type},
-        {"Name", type text},
-        {"Date", type date},
-        {"Amount", type number},
-        {"IsActive", type logical}
-    }
-)</code>
-                </div>
+                <p style="font-size: 12px; padding: 10px;">Explicitly set types using Table.TransformColumnTypes for better performance and reliability</p>
             </div>
         </div>
 
         <div class="feature-list">
             <li><span class="checkmark">✓</span> <strong>Better Performance:</strong> Typed data processes faster</li>
-            <li><span class="checkmark">✓</span> <strong>Query Folding:</strong> Type operations often fold</li>
+            <li><span class="checkmark">✓</span> <strong>Optimized Processing:</strong> Type operations are efficient</li>
             <li><span class="checkmark">✓</span> <strong>Error Detection:</strong> Catch issues early</li>
             <li><span class="checkmark">✓</span> <strong>DAX Compatibility:</strong> Smooth handoff to data model</li>
         </div>
@@ -975,40 +745,12 @@ TypedTable = Table.TransformColumnTypes(
     <!-- Slide 12: Date Intelligence -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">12 / 18</div>
+            <div class="slide-number">9 / 14</div>
         </div>
         <h2>📅 Date Intelligence in Power Query</h2>
         
         <div class="highlight-text">
             Create robust date tables in Power Query instead of DAX - it's faster and more flexible!
-        </div>
-
-        <div class="code-box">
-<code>// Generate date table
-let
-    StartDate = #date(2020, 1, 1),
-    EndDate = Date.From(DateTime.LocalNow()),
-    
-    // Generate all dates
-    DayCount = Duration.Days(EndDate - StartDate) + 1,
-    DateList = List.Dates(StartDate, DayCount, #duration(1, 0, 0, 0)),
-    
-    // Convert to table and add columns
-    DateTable = Table.FromList(DateList, Splitter.SplitByNothing()),
-    RenamedColumn = Table.RenameColumns(DateTable, {{"Column1", "Date"}}),
-    
-    // Add intelligent columns
-    AddedYear = Table.AddColumn(RenamedColumn, "Year", each Date.Year([Date])),
-    AddedQuarter = Table.AddColumn(AddedYear, "Quarter", each "Q" & Number.ToText(Date.QuarterOfYear([Date]))),
-    AddedMonth = Table.AddColumn(AddedQuarter, "Month", each Date.MonthName([Date])),
-    AddedWeek = Table.AddColumn(AddedMonth, "WeekNum", each Date.WeekOfYear([Date])),
-    AddedDayOfWeek = Table.AddColumn(AddedWeek, "DayOfWeek", each Date.DayOfWeekName([Date])),
-    
-    // Fiscal year (July start)
-    AddedFiscalYear = Table.AddColumn(AddedDayOfWeek, "FiscalYear", 
-        each if Date.Month([Date]) >= 7 then Date.Year([Date]) + 1 else Date.Year([Date]))
-in
-    AddedFiscalYear</code>
         </div>
 
         <div class="tip-box">
@@ -1019,7 +761,7 @@ in
     <!-- Slide 13: Debugging Techniques -->
     <div class="slide slide-warning">
         <div class="slide-header">
-            <div class="slide-number">13 / 18</div>
+            <div class="slide-number">10 / 14</div>
         </div>
         <h2>🔍 Debugging: Find & Fix Issues Fast</h2>
         
@@ -1040,23 +782,6 @@ in
             </div>
         </div>
 
-        <div class="code-box">
-<code>// Add intermediate validation steps
-ValidationStep = Table.RowCount(PreviousStep),
-
-// Add error checking columns
-AddErrorCheck = Table.AddColumn(Source, "HasError", 
-    each try [Amount] / [Quantity] otherwise "ERROR"),
-
-// Use Table.Profile for data quality
-ProfileData = Table.Profile(Source),
-
-// Create custom error messages
-CustomError = if SomeCondition then 
-    error Error.Record("MyError", "Expected value not found", "Details here")
-    else OriginalValue</code>
-        </div>
-
         <div class="warning-box">
             <strong>⚠️ Remember:</strong> Remove or comment out debugging steps before production!
         </div>
@@ -1065,7 +790,7 @@ CustomError = if SomeCondition then
     <!-- Slide 14: Performance Optimization -->
     <div class="slide slide-advanced">
         <div class="slide-header">
-            <div class="slide-number">14 / 18</div>
+            <div class="slide-number">11 / 14</div>
         </div>
         <h2>⚡ Performance Optimization Secrets</h2>
         
@@ -1079,7 +804,7 @@ CustomError = if SomeCondition then
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="checkmark">✓</span> Filter early (close to source)</li>
                     <li><span class="checkmark">✓</span> Remove unnecessary columns</li>
-                    <li><span class="checkmark">✓</span> Preserve query folding</li>
+                    <li><span class="checkmark">✓</span> Use simple transformations when possible</li>
                     <li><span class="checkmark">✓</span> Use Table.Buffer strategically</li>
                     <li><span class="checkmark">✓</span> Disable query load when not needed</li>
                     <li><span class="checkmark">✓</span> Use staging queries</li>
@@ -1100,102 +825,80 @@ CustomError = if SomeCondition then
         <div class="tip-box">
             <strong>💡 Secret #10:</strong> Use "Reference" not "Duplicate" when you want to reuse a query - it avoids reprocessing!
         </div>
-
-        <div class="code-box">
-<code>// Disable load for staging queries
-// Right-click query → Uncheck "Enable Load"
-
-// Buffer lookup tables (small reference tables)
-BufferedLookup = Table.Buffer(SmallDimensionTable)
-
-// Then use in merge - much faster!
-Merged = Table.NestedJoin(FactTable, {"ID"}, BufferedLookup, {"ID"}, ...)</code>
-        </div>
     </div>
 
-    <!-- Slide 15: Hidden Gems -->
-    <div class="slide slide-tips">
+    <!-- Slide 11: Duplicates vs References in Power BI -->
+    <div class="slide slide-warning">
         <div class="slide-header">
-            <div class="slide-number">15 / 18</div>
+            <div class="slide-number">12 / 14</div>
         </div>
-        <h2>💎 Hidden Gems & Lesser-Known Tricks</h2>
+        <h2>🔄 Duplicates vs References: Understanding the Difference in Power BI</h2>
         
-        <div class="tip-box">
-            These are the secrets that separate beginners from power users!
+        <div class="highlight-text">
+            One of the most misunderstood concepts! Duplicating vs Referencing queries has major implications once your data is in the model.
         </div>
 
-        <div class="code-box">
-<code>// 1. Dynamic column selection
-DynamicSelect = Table.SelectColumns(Source, 
-    List.Select(Table.ColumnNames(Source), 
-        each Text.Contains(_, "Amount") or Text.Contains(_, "Total")))
+        <h3>What Happens in Power Query:</h3>
 
-// 2. Unpivot OTHER columns (keeps ID columns, unpivots rest)
-UnpivotOther = Table.UnpivotOtherColumns(Source, {"ID", "Name"}, "Attribute", "Value")
+        <div class="comparison-grid">
+            <div class="good-practice">
+                <div class="practice-title">✓ Reference Query</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Points to the original query</li>
+                    <li><span class="checkmark">✓</span> Source query runs ONCE</li>
+                    <li><span class="checkmark">✓</span> Adds transformations on top</li>
+                    <li><span class="checkmark">✓</span> Efficient and fast</li>
+                    <li><span class="checkmark">✓</span> Changes to source flow through</li>
+                </ul>
+            </div>
+            <div class="bad-practice">
+                <div class="practice-title">✗ Duplicate Query</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="warning">✗</span> Creates independent copy</li>
+                    <li><span class="warning">✗</span> Source query runs TWICE</li>
+                    <li><span class="warning">✗</span> Completely separate lineage</li>
+                    <li><span class="warning">✗</span> Slower, more resource intensive</li>
+                    <li><span class="warning">✗</span> Changes to source DON'T flow through</li>
+                </ul>
+            </div>
+        </div>
 
-// 3. Table.TransformColumns with List.Transform (transform ALL columns at once)
-TrimAll = Table.TransformColumns(Source,
-    List.Transform(Table.ColumnNames(Source), each {_, Text.Trim}))
+        <h3>What Happens in the Power BI Model:</h3>
 
-// 4. List.Accumulate (like REDUCE in other languages)
-RunningTotal = List.Accumulate({1,2,3,4,5}, 0, (state, current) => state + current)
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">📊 Reference Behavior</div>
+                <ul class="feature-list" style="font-size: 13px;">
+                    <li><span class="checkmark">✓</span> Creates separate table in model</li>
+                    <li><span class="checkmark">✓</span> Each table takes memory independently</li>
+                    <li><span class="checkmark">✓</span> Can create relationships between them</li>
+                    <li><span class="checkmark">✓</span> Refresh is optimized (source loads once)</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚠️ Duplicate Behavior</div>
+                <ul class="feature-list" style="font-size: 13px;">
+                    <li><span class="warning">⚠️</span> Also creates separate table in model</li>
+                    <li><span class="warning">⚠️</span> Same memory footprint as reference</li>
+                    <li><span class="warning">⚠️</span> Can also have relationships</li>
+                    <li><span class="warning">⚠️</span> Slower refresh (source loads twice)</li>
+                </ul>
+            </div>
+        </div>
 
-// 5. Table.Schema (get metadata about table)
-SchemaInfo = Table.Schema(Source)
-
-// 6. Expression.Evaluate (dynamic M code execution)
-DynamicCode = Expression.Evaluate("1 + 1", [])</code>
+        <div class="tip-box">
+            <strong>💡 Key Insight:</strong> In the final model, both References and Duplicates create separate tables with separate memory. The BIG difference is refresh performance and maintainability during development!
         </div>
 
         <div class="warning-box">
-            <strong>⚠️ Use Expression.Evaluate Carefully:</strong> It's powerful but can break query folding and hurt performance
+            <strong>⚠️ Best Practice:</strong> Always use Reference unless you specifically need an independent copy that won't change when the source changes. Your refresh times will thank you!
         </div>
     </div>
 
-    <!-- Slide 16: Real-World Patterns -->
-    <div class="slide slide-success">
-        <div class="slide-header">
-            <div class="slide-number">16 / 18</div>
-        </div>
-        <h2>🏗️ Real-World Patterns That Save Time</h2>
-        
-        <h3>Pattern 1: Incremental Load Simulation</h3>
-        <div class="code-box">
-<code>// Filter based on parameter for incremental-like behavior
-MaxDate = List.Max(ExistingData[LoadDate]),
-NewData = Table.SelectRows(Source, each [ModifiedDate] > MaxDate)</code>
-        </div>
-
-        <h3>Pattern 2: API Pagination Handler</h3>
-        <div class="code-box">
-<code>GetAllPages = (url as text) as table =>
-let
-    GetPage = (pageUrl as text) =>
-        let
-            Response = Json.Document(Web.Contents(pageUrl)),
-            Data = Response[data],
-            NextPage = Response[next_page]
-        in
-            Data & (if NextPage <> null then @GetPage(NextPage) else {}),
-    AllData = GetPage(url)
-in
-    Table.FromRecords(AllData)</code>
-        </div>
-
-        <h3>Pattern 3: Self-Healing Column References</h3>
-        <div class="code-box">
-<code>// Instead of hard-coded [Column1]
-SafeGetColumn = (tbl, colName) =>
-    if List.Contains(Table.ColumnNames(tbl), colName) 
-    then Table.Column(tbl, colName)
-    else null</code>
-        </div>
-    </div>
-
-    <!-- Slide 17: Best Practices Checklist -->
+    <!-- Slide 12: Best Practices Checklist -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">17 / 18</div>
+            <div class="slide-number">13 / 14</div>
         </div>
         <h2>✅ Best Practices Checklist</h2>
         
@@ -1215,7 +918,7 @@ SafeGetColumn = (tbl, colName) =>
             <div class="feature-card">
                 <div class="feature-title">⚡ Performance</div>
                 <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Maintain query folding</li>
+                    <li><span class="checkmark">✓</span> Keep transformations simple and efficient</li>
                     <li><span class="checkmark">✓</span> Filter early and often</li>
                     <li><span class="checkmark">✓</span> Remove unused columns</li>
                     <li><span class="checkmark">✓</span> Set data types explicitly</li>
@@ -1249,7 +952,7 @@ SafeGetColumn = (tbl, colName) =>
     <!-- Slide 18: Resources & Closing -->
     <div class="slide slide-info">
         <div class="slide-header">
-            <div class="slide-number">18 / 18</div>
+            <div class="slide-number">14 / 14</div>
         </div>
         <h2>🎓 Thank You! Resources & Next Steps</h2>
         

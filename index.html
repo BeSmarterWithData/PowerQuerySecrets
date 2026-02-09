@@ -726,30 +726,11 @@
         <div class="two-column">
             <div class="bad-practice">
                 <div class="practice-title">❌ Don't Do This</div>
-                <div class="code-box" style="font-size: 12px;">
-<code>// Let Power Query guess
-Source = Excel.Workbook(...)
-
-// All columns as "Any"
-// Slow performance
-// Potential errors</code>
-                </div>
+                <p style="font-size: 12px; padding: 10px;">Let Power Query guess types - all columns as "Any", slow performance, potential errors</p>
             </div>
             <div class="good-practice">
                 <div class="practice-title">✓ Do This</div>
-                <div class="code-box" style="font-size: 12px;">
-<code>// Explicit types
-TypedTable = Table.TransformColumnTypes(
-    Source,
-    {
-        {"ID", Int64.Type},
-        {"Name", type text},
-        {"Date", type date},
-        {"Amount", type number},
-        {"IsActive", type logical}
-    }
-)</code>
-                </div>
+                <p style="font-size: 12px; padding: 10px;">Explicitly set types using Table.TransformColumnTypes for better performance and reliability</p>
             </div>
         </div>
 

@@ -914,9 +914,8 @@
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="warning">⚠️</span> Case-insensitive by default</li>
                     <li><span class="warning">⚠️</span> "Product" = "product" = "PRODUCT"</li>
-                    <li><span class="warning">⚠️</span> Ignores leading/trailing spaces</li>
-                    <li><span class="warning">⚠️</span> "ABC" = "ABC " = " ABC"</li>
-                    <li><span class="warning">⚠️</span> Keeps first occurrence</li>
+                    <li><span class="warning">⚠️</span> Ignores trailing spaces, but respects trailing</li>
+                    <li><span class="warning">⚠️</span> "ABC" = "ABC " ≠ " ABC"</li>
                 </ul>
             </div>
             <div class="good-practice">
@@ -937,10 +936,10 @@
             <div class="feature-card">
                 <div class="feature-title">⚠️ Scenario</div>
                 <ul class="feature-list" style="font-size: 13px;">
-                    <li><span class="warning">1.</span> Dim table has "Product A" and "product a"</li>
-                    <li><span class="warning">2.</span> Remove duplicates in Power BI Desktop keeps only one</li>
-                    <li><span class="warning">3.</span> Fact table still has both variations</li>
-                    <li><span class="warning">4.</span> Relationship breaks - orphaned rows in fact table!</li>
+                    <li><span class="warning">1.</span> Dim table is no longer unique in Power BI</li>
+                    <li><span class="warning">2.</span> Power BI only chooses one variation</li>
+                    <li><span class="warning">3.</span> Source table still has both variations</li>
+                    <li><span class="warning">4.</span> Relationship breaks when the dimension is many to one</li>
                 </ul>
             </div>
             <div class="feature-card">

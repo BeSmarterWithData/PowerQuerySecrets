@@ -895,10 +895,77 @@
         </div>
     </div>
 
-    <!-- Slide 12: Best Practices Checklist -->
+    <!-- Slide 13: Remove Duplicates - Power BI vs Power Query -->
+    <div class="slide slide-warning">
+        <div class="slide-header">
+            <div class="slide-number">13 / 15</div>
+        </div>
+        <h2>🔍 Remove Duplicates: The Hidden Gotcha</h2>
+        
+        <div class="warning-box">
+            <strong>Critical Issue:</strong> Remove Duplicates behaves differently in Power BI Desktop vs Power Query - and it can break your relationships!
+        </div>
+
+        <h3>The Problem: Case Sensitivity & Whitespace</h3>
+
+        <div class="comparison-grid">
+            <div class="bad-practice">
+                <div class="practice-title">❌ Power BI Desktop</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="warning">⚠️</span> Case-insensitive by default</li>
+                    <li><span class="warning">⚠️</span> "Product" = "product" = "PRODUCT"</li>
+                    <li><span class="warning">⚠️</span> Ignores trailing spaces, but respects trailing</li>
+                    <li><span class="warning">⚠️</span> "ABC" = "ABC " ≠ " ABC"</li>
+                </ul>
+            </div>
+            <div class="good-practice">
+                <div class="practice-title">✓ Power Query (Excel/Dataflows)</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Case-sensitive by default</li>
+                    <li><span class="checkmark">✓</span> "Product" ≠ "product" ≠ "PRODUCT"</li>
+                    <li><span class="checkmark">✓</span> Respects leading/trailing spaces</li>
+                    <li><span class="checkmark">✓</span> "ABC" ≠ "ABC " ≠ " ABC"</li>
+                    <li><span class="checkmark">✓</span> All are treated as unique</li>
+                </ul>
+            </div>
+        </div>
+
+        <h3>💥 Why This Breaks Relationships:</h3>
+
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">⚠️ Scenario</div>
+                <ul class="feature-list" style="font-size: 13px;">
+                    <li><span class="warning">1.</span> Dim table is no longer unique in Power BI</li>
+                    <li><span class="warning">2.</span> Power BI only chooses one variation</li>
+                    <li><span class="warning">3.</span> Source table still has both variations</li>
+                    <li><span class="warning">4.</span> Relationship breaks when the dimension is many to one</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">✓ Solution</div>
+                <ul class="feature-list" style="font-size: 13px;">
+                    <li><span class="checkmark">✓</span> Clean data BEFORE remove duplicates</li>
+                    <li><span class="checkmark">✓</span> Use Text.Upper() or Text.Lower() to normalize case</li>
+                    <li><span class="checkmark">✓</span> Use Text.Trim() to remove leading/trailing spaces</li>
+                    <li><span class="checkmark">✓</span> Apply same cleaning to both dimension and fact tables</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Pro Tip:</strong> Always test your relationships after using Remove Duplicates. Check for blanks in your visuals - that's often a sign of broken relationships due to this issue!
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Best Practice:</strong> When working across Power BI Desktop and Excel/Dataflows, standardize your data cleaning approach early. Create a custom function for consistent normalization to avoid this gotcha!
+        </div>
+    </div>
+
+    <!-- Slide 14: Best Practices Checklist -->
     <div class="slide slide-pq">
         <div class="slide-header">
-            <div class="slide-number">13 / 14</div>
+            <div class="slide-number">14 / 15</div>
         </div>
         <h2>✅ Best Practices Checklist</h2>
         
@@ -949,10 +1016,10 @@
         </div>
     </div>
 
-    <!-- Slide 18: Resources & Closing -->
+    <!-- Slide 15: Resources & Closing -->
     <div class="slide slide-info">
         <div class="slide-header">
-            <div class="slide-number">14 / 14</div>
+            <div class="slide-number">15 / 15</div>
         </div>
         <h2>🎓 Thank You! Resources & Next Steps</h2>
         

@@ -502,10 +502,10 @@
 <body>
     <div class="presentation-container">
         
-    <!-- Slide 1: Title -->
+    <!-- Slide 1: Title  -->
     <div class="slide active slide-pq">
         <div class="slide-header">
-            <div class="slide-number">1 / 14</div>
+            <div class="slide-number">1 / 15</div>
         </div>
 
         <h1 style="font-size: clamp(28px, 5vw, 2.8em); margin-bottom: 0.3em; line-height: 1.2;">
@@ -528,10 +528,10 @@
         </div>
     </div>
 
-    <!-- Slide 2: Agenda -->
+    <!-- Slide 2: Agenda  -->
     <div class="slide slide-info">
         <div class="slide-header">
-            <div class="slide-number">2 / 14</div>
+            <div class="slide-number">2 / 15</div>
         </div>
         <h2>📋 Agenda: What We'll Cover</h2>
         <div class="subtitle">A Journey Through Power Query Mastery</div>
@@ -540,15 +540,16 @@
             <div class="feature-card" style="padding: 25px;">
                 <ul class="feature-list">
                     <li><span class="checkmark">✓</span> <strong>The Foundation:</strong> Why Power Query is Critical</li>
-                    <li><span class="checkmark">✓</span> <strong>Parameter Magic:</strong> Dynamic & Flexible Queries</li>
-                    <li><span class="checkmark">✓</span> <strong>Error Handling:</strong> Bulletproof Your Transformations</li>
-                    <li><span class="checkmark">✓</span> <strong>Custom Functions:</strong> Reusable Logic Patterns</li>
-                    <li><span class="checkmark">✓</span> <strong>Table Operations:</strong> Merge, Append & Group Magic</li>
-                    <li><span class="checkmark">✓</span> <strong>Type System:</strong> Proper Data Types Matter</li>
-                    <li><span class="checkmark">✓</span> <strong>Date Intelligence:</strong> Calendar Tables & Beyond</li>
-                    <li><span class="checkmark">✓</span> <strong>Debugging:</strong> Finding & Fixing Issues Fast</li>
                     <li><span class="checkmark">✓</span> <strong>Performance Optimization:</strong> Speed Up Your Refreshes</li>
+                    <li><span class="checkmark">✓</span> <strong>Parameter Magic:</strong> Dynamic & Flexible Queries</li>
+                    <li><span class="checkmark">✓</span> <strong>Type System:</strong> Proper Data Types Matter</li>
+                    <li><span class="checkmark">✓</span> <strong>Debugging:</strong> Finding & Fixing Issues Fast</li>
                     <li><span class="checkmark">✓</span> <strong>Duplicates vs References:</strong> Understanding the Difference</li>
+                    <li><span class="checkmark">✓</span> <strong>Remove Duplicates:</strong> The Hidden Gotcha</li>
+                    <li><span class="checkmark">✓</span> <strong>Error Handling:</strong> Bulletproof Your Transformations</li>
+                    <li><span class="checkmark">✓</span> <strong>Table Operations:</strong> Merge, Append & Group Magic</li>
+                    <li><span class="checkmark">✓</span> <strong>Custom Functions:</strong> Reusable Logic Patterns</li>
+                    <li><span class="checkmark">✓</span> <strong>Date Intelligence:</strong> Calendar Tables & Beyond</li>
                 </ul>
             </div>
         </div>
@@ -559,10 +560,10 @@
         </div>
     </div>
 
-    <!-- Slide 3: Why Power Query Matters -->
+    <!-- Slide 3: Why Power Query Matters  -->
     <div class="slide slide-success">
         <div class="slide-header">
-            <div class="slide-number">3 / 14</div>
+            <div class="slide-number">3 / 15</div>
         </div>
         <h2>🎯 Why Power Query is Where It All Begins</h2>
         
@@ -596,201 +597,10 @@
         </div>
     </div>
 
-    <!-- Slide 4: Parameters - The Foundation -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">4 / 14</div>
-        </div>
-        <h2>🔧 Parameter Magic: Dynamic Everything</h2>
-        
-        <div class="tip-box">
-            <strong>💡 Secret #1:</strong> Parameters make your queries infinitely more flexible and reusable
-        </div>
-
-        <h3>Why Use Parameters?</h3>
-        <ul class="feature-list">
-            <li><span class="checkmark">✓</span> Change data sources without editing queries</li>
-            <li><span class="checkmark">✓</span> Build environment-specific solutions (Dev/Test/Prod)</li>
-            <li><span class="checkmark">✓</span> Create dynamic date ranges and filters</li>
-            <li><span class="checkmark">✓</span> Enable user-driven scenarios</li>
-        </ul>
-
-        <div class="warning-box">
-            <strong>⚠️ Pro Tip:</strong> Always document your parameters with descriptions. Future you will thank present you!
-        </div>
-    </div>
-
-    <!-- Slide 5: Error Handling -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">5 / 14</div>
-        </div>
-        <h2>🛡️ Error Handling: Bulletproof Your Queries</h2>
-        
-        <div class="warning-box">
-            <strong>The Problem:</strong> One missing column, one renamed field, one unexpected null value = entire refresh fails
-        </div>
-
-        <h3>Secret #2: Use try...otherwise Everywhere</h3>
-        
-
-        <div class="tip-box">
-            <strong>💡 Pro Pattern:</strong> Create error logging tables to track which rows failed and why!
-        </div>
-    </div>
-
-    <!-- Slide 7: Custom Functions -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">6 / 14</div>
-        </div>
-        <h2>🔨 Custom Functions: Write Once, Use Everywhere</h2>
-        
-        <div class="highlight-text">
-            Stop copying and pasting transformations! Custom functions make your code DRY (Don't Repeat Yourself) and maintainable.
-        </div>
-
-        <h3>Secret #3: Turn Repeated Logic into Functions</h3>
-        
-        <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">✓ Benefits</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Consistent logic</li>
-                    <li><span class="checkmark">✓</span> Easy to update</li>
-                    <li><span class="checkmark">✓</span> Testable</li>
-                    <li><span class="checkmark">✓</span> Shareable</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚡ Use Cases</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Data cleaning</li>
-                    <li><span class="star">★</span> API calls</li>
-                    <li><span class="star">★</span> Type conversions</li>
-                    <li><span class="star">★</span> Business rules</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- Slide 7: Table Operations -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">7 / 14</div>
-        </div>
-        <h2>🔄 Table Operations: Merge, Append & Group</h2>
-        
-        <h3>Merge (Joins) - SQL Users Will Love This</h3>
-        
-        <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">Join Types</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Inner</li>
-                    <li><span class="checkmark">✓</span> Left Outer</li>
-                    <li><span class="checkmark">✓</span> Right Outer</li>
-                    <li><span class="checkmark">✓</span> Full Outer</li>
-                    <li><span class="checkmark">✓</span> Left Anti</li>
-                    <li><span class="checkmark">✓</span> Right Anti</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚡ Pro Tips</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Use anti joins for data quality checks</li>
-                    <li><span class="star">★</span> Expand only needed columns</li>
-                    <li><span class="star">★</span> Filter before merging for better performance</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="tip-box">
-            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control
-        </div>
-    </div>
-
-    <!-- Slide 8: Type System -->
-    <div class="slide slide-info">
-        <div class="slide-header">
-            <div class="slide-number">8 / 14</div>
-        </div>
-        <h2>🎯 The Type System: Why It Matters</h2>
-        
-        <div class="warning-box">
-            <strong>Common Mistake:</strong> Ignoring data types leads to slow refreshes, unexpected errors, and wrong calculations
-        </div>
-
-        <h3>Secret #7: Set Types Early and Explicitly</h3>
-
-        <div class="two-column">
-            <div class="bad-practice">
-                <div class="practice-title">❌ Don't Do This</div>
-                <p style="font-size: 12px; padding: 10px;">Let Power Query guess types - all columns as "Any", slow performance, potential errors</p>
-            </div>
-            <div class="good-practice">
-                <div class="practice-title">✓ Do This</div>
-                <p style="font-size: 12px; padding: 10px;">Explicitly set types using Table.TransformColumnTypes for better performance and reliability</p>
-            </div>
-        </div>
-
-        <div class="feature-list">
-            <li><span class="checkmark">✓</span> <strong>Better Performance:</strong> Typed data processes faster</li>
-            <li><span class="checkmark">✓</span> <strong>Optimized Processing:</strong> Type operations are efficient</li>
-            <li><span class="checkmark">✓</span> <strong>Error Detection:</strong> Catch issues early</li>
-            <li><span class="checkmark">✓</span> <strong>DAX Compatibility:</strong> Smooth handoff to data model</li>
-        </div>
-    </div>
-
-    <!-- Slide 12: Date Intelligence -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">9 / 14</div>
-        </div>
-        <h2>📅 Date Intelligence in Power Query</h2>
-        
-        <div class="highlight-text">
-            Create robust date tables in Power Query instead of DAX - it's faster and more flexible!
-        </div>
-
-        <div class="tip-box">
-            <strong>💡 Secret #8:</strong> Use List.Dates() instead of looping - it's 100x faster!
-        </div>
-    </div>
-
-    <!-- Slide 13: Debugging Techniques -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">10 / 14</div>
-        </div>
-        <h2>🔍 Debugging: Find & Fix Issues Fast</h2>
-        
-        <h3>Secret #9: Power Query Debugging Toolkit</h3>
-
-        <div class="three-column">
-            <div class="feature-card">
-                <div class="feature-title">🎯 Formula Bar</div>
-                <div class="feature-desc">Use it! Shows exact M code for each step. Click to edit.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">👁️ Column Quality</div>
-                <div class="feature-desc">Shows valid, error, and empty percentages per column.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">📊 Column Profile</div>
-                <div class="feature-desc">Reveals distribution, min, max, unique values.</div>
-            </div>
-        </div>
-
-        <div class="warning-box">
-            <strong>⚠️ Remember:</strong> Remove or comment out debugging steps before production!
-        </div>
-    </div>
-
-    <!-- Slide 14: Performance Optimization -->
+    <!-- Slide 4: Performance Optimization  -->
     <div class="slide slide-advanced">
         <div class="slide-header">
-            <div class="slide-number">11 / 14</div>
+            <div class="slide-number">4 / 15</div>
         </div>
         <h2>⚡ Performance Optimization Secrets</h2>
         
@@ -827,10 +637,95 @@
         </div>
     </div>
 
-    <!-- Slide 11: Duplicates vs References in Power BI -->
+    <!-- Slide 5: Parameters - The Foundation  -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">5 / 15</div>
+        </div>
+        <h2>🔧 Parameter Magic: Dynamic Everything</h2>
+        
+        <div class="tip-box">
+            <strong>💡 Secret #1:</strong> Parameters make your queries infinitely more flexible and reusable
+        </div>
+
+        <h3>Why Use Parameters?</h3>
+        <ul class="feature-list">
+            <li><span class="checkmark">✓</span> Change data sources without editing queries</li>
+            <li><span class="checkmark">✓</span> Build environment-specific solutions (Dev/Test/Prod)</li>
+            <li><span class="checkmark">✓</span> Create dynamic date ranges and filters</li>
+            <li><span class="checkmark">✓</span> Enable user-driven scenarios</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>⚠️ Pro Tip:</strong> Always document your parameters with descriptions. Future you will thank present you!
+        </div>
+    </div>
+
+    <!-- Slide 6: Type System  -->
+    <div class="slide slide-info">
+        <div class="slide-header">
+            <div class="slide-number">6 / 15</div>
+        </div>
+        <h2>🎯 The Type System: Why It Matters</h2>
+        
+        <div class="warning-box">
+            <strong>Common Mistake:</strong> Ignoring data types leads to slow refreshes, unexpected errors, and wrong calculations
+        </div>
+
+        <h3>Secret #7: Set Types Early and Explicitly</h3>
+
+        <div class="two-column">
+            <div class="bad-practice">
+                <div class="practice-title">❌ Don't Do This</div>
+                <p style="font-size: 12px; padding: 10px;">Let Power Query guess types - all columns as "Any", slow performance, potential errors</p>
+            </div>
+            <div class="good-practice">
+                <div class="practice-title">✓ Do This</div>
+                <p style="font-size: 12px; padding: 10px;">Explicitly set types using Table.TransformColumnTypes for better performance and reliability</p>
+            </div>
+        </div>
+
+        <div class="feature-list">
+            <li><span class="checkmark">✓</span> <strong>Better Performance:</strong> Typed data processes faster</li>
+            <li><span class="checkmark">✓</span> <strong>Optimized Processing:</strong> Type operations are efficient</li>
+            <li><span class="checkmark">✓</span> <strong>Error Detection:</strong> Catch issues early</li>
+            <li><span class="checkmark">✓</span> <strong>DAX Compatibility:</strong> Smooth handoff to data model</li>
+        </div>
+    </div>
+
+    <!-- Slide 7: Debugging Techniques  -->
     <div class="slide slide-warning">
         <div class="slide-header">
-            <div class="slide-number">12 / 14</div>
+            <div class="slide-number">7 / 15</div>
+        </div>
+        <h2>🔍 Debugging: Find & Fix Issues Fast</h2>
+        
+        <h3>Secret #9: Power Query Debugging Toolkit</h3>
+
+        <div class="three-column">
+            <div class="feature-card">
+                <div class="feature-title">🎯 Formula Bar</div>
+                <div class="feature-desc">Use it! Shows exact M code for each step. Click to edit.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">👁️ Column Quality</div>
+                <div class="feature-desc">Shows valid, error, and empty percentages per column.</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">📊 Column Profile</div>
+                <div class="feature-desc">Reveals distribution, min, max, unique values.</div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>⚠️ Remember:</strong> Remove or comment out debugging steps before production!
+        </div>
+    </div>
+
+    <!-- Slide 8: Duplicates vs References in Power BI  -->
+    <div class="slide slide-warning">
+        <div class="slide-header">
+            <div class="slide-number">8 / 15</div>
         </div>
         <h2>🔄 Duplicates vs References: Understanding the Difference in Power BI</h2>
         
@@ -895,10 +790,10 @@
         </div>
     </div>
 
-    <!-- Slide 13: Remove Duplicates - Power BI vs Power Query -->
+    <!-- Slide 9: Remove Duplicates - Power BI vs Power Query  -->
     <div class="slide slide-warning">
         <div class="slide-header">
-            <div class="slide-number">13 / 15</div>
+            <div class="slide-number">9 / 15</div>
         </div>
         <h2>🔍 Remove Duplicates: The Hidden Gotcha</h2>
         
@@ -914,7 +809,7 @@
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="warning">⚠️</span> Case-insensitive by default</li>
                     <li><span class="warning">⚠️</span> "Product" = "product" = "PRODUCT"</li>
-                    <li><span class="warning">⚠️</span> Ignores trailing spaces, but respects trailing</li>
+                    <li><span class="warning">⚠️</span> Ignores trailing spaces, but respects leading spaces</li>
                     <li><span class="warning">⚠️</span> "ABC" = "ABC " ≠ " ABC"</li>
                 </ul>
             </div>
@@ -962,7 +857,113 @@
         </div>
     </div>
 
-    <!-- Slide 14: Best Practices Checklist -->
+    <!-- Slide 10: Error Handling  -->
+    <div class="slide slide-warning">
+        <div class="slide-header">
+            <div class="slide-number">10 / 15</div>
+        </div>
+        <h2>🛡️ Error Handling: Bulletproof Your Queries</h2>
+        
+        <div class="warning-box">
+            <strong>The Problem:</strong> One missing column, one renamed field, one unexpected null value = entire refresh fails
+        </div>
+
+        <h3>Secret #2: Use try...otherwise Everywhere</h3>
+        
+
+        <div class="tip-box">
+            <strong>💡 Pro Pattern:</strong> Create error logging tables to track which rows failed and why!
+        </div>
+    </div>
+
+    <!-- Slide 11: Table Operations  -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">11 / 15</div>
+        </div>
+        <h2>🔄 Table Operations: Merge, Append & Group</h2>
+        
+        <h3>Merge (Joins) - SQL Users Will Love This</h3>
+        
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">Join Types</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Inner</li>
+                    <li><span class="checkmark">✓</span> Left Outer</li>
+                    <li><span class="checkmark">✓</span> Right Outer</li>
+                    <li><span class="checkmark">✓</span> Full Outer</li>
+                    <li><span class="checkmark">✓</span> Left Anti</li>
+                    <li><span class="checkmark">✓</span> Right Anti</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ Pro Tips</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Use anti joins for data quality checks</li>
+                    <li><span class="star">★</span> Expand only needed columns</li>
+                    <li><span class="star">★</span> Filter before merging for better performance</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control
+        </div>
+    </div>
+
+    <!-- Slide 12: Custom Functions  -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">12 / 15</div>
+        </div>
+        <h2>🔨 Custom Functions: Write Once, Use Everywhere</h2>
+        
+        <div class="highlight-text">
+            Stop copying and pasting transformations! Custom functions make your code DRY (Don't Repeat Yourself) and maintainable.
+        </div>
+
+        <h3>Secret #3: Turn Repeated Logic into Functions</h3>
+        
+        <div class="two-column">
+            <div class="feature-card">
+                <div class="feature-title">✓ Benefits</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="checkmark">✓</span> Consistent logic</li>
+                    <li><span class="checkmark">✓</span> Easy to update</li>
+                    <li><span class="checkmark">✓</span> Testable</li>
+                    <li><span class="checkmark">✓</span> Shareable</li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <div class="feature-title">⚡ Use Cases</div>
+                <ul class="feature-list" style="font-size: 14px;">
+                    <li><span class="star">★</span> Data cleaning</li>
+                    <li><span class="star">★</span> API calls</li>
+                    <li><span class="star">★</span> Type conversions</li>
+                    <li><span class="star">★</span> Business rules</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 13: Date Intelligence  -->
+    <div class="slide slide-pq">
+        <div class="slide-header">
+            <div class="slide-number">13 / 15</div>
+        </div>
+        <h2>📅 Date Intelligence in Power Query</h2>
+        
+        <div class="highlight-text">
+            Create robust date tables in Power Query instead of DAX - it's faster and more flexible!
+        </div>
+
+        <div class="tip-box">
+            <strong>💡 Secret #8:</strong> Use List.Dates() instead of looping - it's 100x faster!
+        </div>
+    </div>
+
+    <!-- Slide 14: Best Practices Checklist  -->
     <div class="slide slide-pq">
         <div class="slide-header">
             <div class="slide-number">14 / 15</div>
@@ -1016,7 +1017,7 @@
         </div>
     </div>
 
-    <!-- Slide 15: Resources & Closing -->
+    <!-- Slide 15: Resources & Closing  -->
     <div class="slide slide-info">
         <div class="slide-header">
             <div class="slide-number">15 / 15</div>
@@ -1107,9 +1108,6 @@
         <div class="indicator" onclick="goToSlide(12)"></div>
         <div class="indicator" onclick="goToSlide(13)"></div>
         <div class="indicator" onclick="goToSlide(14)"></div>
-        <div class="indicator" onclick="goToSlide(15)"></div>
-        <div class="indicator" onclick="goToSlide(16)"></div>
-        <div class="indicator" onclick="goToSlide(17)"></div>
     </div>
 
     <script>

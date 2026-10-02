@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Power Query Secrets: Unlocking Low-Code Data Transformation</title>
+    <title>Power Query Secrets: Unlocking Low-Code Data Transformation | The Cloud &amp; AI Summit 2026</title>
     <style>
         * {
             margin: 0;
@@ -497,13 +497,119 @@
                 gap: 15px;
             }
         }
+        :root { --summit-ink:#0A0E1A; --summit-blue:#1E67C4; --summit-light:#A8D8F5; --summit-line:#E6E8EC; }
+        html { scroll-behavior:auto; }
+        body { background:#080B12; color:var(--summit-ink); overflow:hidden; }
+        .presentation-container { position:fixed; inset:0 0 80px; padding:0; min-height:0; align-items:center; }
+        .slide { width:1280px; max-width:none; height:720px; min-height:0; flex-shrink:0; padding:104px 64px 112px; background:#F7F8FA url('assets/summit-content.png') center/100% 100% no-repeat; border:0; border-radius:2px; overflow:hidden; box-shadow:0 24px 80px rgba(0,0,0,.45); transform:scale(var(--slide-scale,1)); transform-origin:center; --accent-color:#1E67C4; --secondary:#3BA0E8; }
+        .slide.active { display:flex; flex-direction:column; gap:20px; animation:none; }
+        .slide > * { flex-shrink:0; }
+        .slide::before,.slide::after { display:none; }
+        .slide-header { position:absolute; bottom:76px; left:64px; right:64px; margin:0; display:flex; justify-content:flex-end; }
+        .slide-number { padding:0; background:none; color:#505966; border-radius:0; box-shadow:none; font:600 14px/1.4 Consolas,monospace; }
+        h1 { font-size:44px !important; background:none; -webkit-text-fill-color:currentColor; color:var(--summit-ink); letter-spacing:0; }
+        h2 { font-size:38px; line-height:1.15; letter-spacing:0; margin:0; font-weight:650; }
+        h3 { font-size:23px; line-height:1.3; margin:0; }
+        .subtitle { font-size:22px; line-height:1.5; }
+        .feature-list { font-size:19px !important; line-height:1.5; }
+        .feature-list li { gap:6px; margin-bottom:10px; padding:0; }
+        .feature-title { font-size:21px; color:var(--summit-blue); }
+        .feature-desc,.slide p { font-size:18px !important; line-height:1.5; }
+        .feature-card { background:transparent; border:0; border-top:2px solid var(--summit-line); border-radius:0; padding:16px 0 0; }
+        .feature-card .feature-card { border:0; }
+        .highlight-text,.visual-box,.tip-box,.warning-box { border-radius:4px; font-size:18px !important; line-height:1.45; margin:0; padding:16px 20px; }
+        .two-column,.three-column,.comparison-grid { margin:0; gap:32px; }
+        .two-column,.comparison-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+        .three-column { grid-template-columns:repeat(3,minmax(0,1fr)); }
+        .subtitle { margin:0; }
+        .checkmark,.warning,.star { font-size:20px; margin-right:6px; }
+        .highlight-text,.visual-box { background:#EAF2FB !important; border:0 !important; border-left:4px solid var(--summit-blue) !important; text-align:left; font-style:normal; }
+        .tip-box { background:#FFF3D1; border-color:#B88500; }
+        .warning-box { background:#FBE9EC; border-color:#B32339; }
+        .good-practice,.bad-practice { border-radius:6px; background:#FFF; }
+        .author { background:none; border:0; border-radius:0; padding:0; font-style:normal; }
+        .slide a { color:var(--summit-blue) !important; overflow-wrap:anywhere; text-underline-offset:3px; }
+        .code-box { background:#0A0E1A; color:#DCEAF8; border-color:#3BA0E8; font-size:17px; line-height:1.4; white-space:pre-wrap; overflow-wrap:anywhere; margin:0; padding:18px 22px; }
+        .code-box code { color:inherit; }
+        .scenario-label { font:600 14px/1.3 'Segoe UI',sans-serif; color:#505966; letter-spacing:0; }
+        .demo-focus { margin-top:auto; border-top:2px solid var(--summit-line); padding-top:12px; font-size:17px; line-height:1.4; color:#34445A; overflow-wrap:anywhere; }
+        .demo-focus strong { color:var(--summit-blue); }
+        .pattern-flow { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+        .pattern-flow > div { background:#EAF2FB; border-left:4px solid var(--summit-blue); padding:16px; }
+        .pattern-flow strong { display:block; font-size:22px; margin-bottom:8px; }
+        .pattern-flow span { font-size:18px; line-height:1.5; }
+        .sample-table { width:100%; table-layout:fixed; border-collapse:collapse; margin:0; font-size:18px; }
+        .sample-table th,.sample-table td { padding:12px 16px; text-align:left; overflow-wrap:anywhere; }
+        .sample-table th { background:#EAF2FB; color:var(--summit-ink); }
+        .sample-table td { border-bottom:1px solid var(--summit-line); }
+        .comparison-value { font:600 24px/1.4 Consolas,monospace; color:var(--summit-blue); overflow-wrap:anywhere; }
+        .slide-title { background:#0A0E1A url('assets/summit-title.png') center/100% 100% no-repeat; color:white; }
+        .slide-title::before,.slide-title::after { display:none; }
+        .slide-title { justify-content:center; }
+        .slide-title h1 { color:white; margin:0; font-size:48px !important; }
+        .slide-title .subtitle,.slide-title .slide-number,.slide-title .session-meta { color:var(--summit-light); }
+        .slide-title .author { color:white !important; font-size:21px !important; margin:0; }
+        .slide-section { background:#0A0E1A url('assets/summit-dark.png') center/100% 100% no-repeat; color:white; justify-content:center; }
+        .slide-section h2 { font-size:64px; color:white; }
+        .slide-section .scenario-label,.slide-section .slide-number { color:var(--summit-light); }
+        .slide-section p { max-width:820px; font-size:24px !important; margin:0; }
+        .session-meta { font:500 17px/1.5 Consolas,monospace; }
+        .resource-layout { display:grid; grid-template-columns:1fr 240px; gap:40px; align-items:center; }
+        .demo-qr { margin:0; text-align:center; }
+        .demo-qr img { width:240px; height:240px; max-width:100%; object-fit:contain; background:white; }
+        .demo-qr figcaption { font-size:16px; margin-top:8px; }
+        .slide.sponsor-slide { padding:0; min-height:0; background:#0A0E1A; }
+        .sponsor-slide::before,.sponsor-slide::after { display:none; }
+        .sponsor-slide img { display:block; width:100%; height:100%; object-fit:contain; }
+        .navigation { top:calc(50% + var(--slide-half-height, 360px) - 20px); bottom:auto; width:max-content; gap:4px; padding:4px 8px; border-radius:6px; background:#0A0E1A; border:1px solid #35465C; }
+        .nav-btn { position:relative; display:grid; place-items:center; background:none; border:0; color:#FFF; border-radius:4px; box-shadow:none; width:28px; min-width:28px; height:28px; padding:0; font-size:20px; }
+        .nav-btn:hover { background:#1E67C4; box-shadow:none; transform:none; }
+        .nav-btn::after { content:attr(data-tooltip); position:absolute; top:calc(100% + 8px); left:50%; transform:translateX(-50%); white-space:nowrap; font:500 11px/16px 'Segoe UI',sans-serif; color:#FFF; background:#0A0E1A; padding:0 4px; border-radius:2px; opacity:0; pointer-events:none; }
+        .nav-btn:hover::after,.nav-btn:focus-visible::after { opacity:1; }
+        .slide-indicators { display:none; }
+        #counter { color:#FFF; min-width:60px; align-self:center; text-align:center; font:600 14px/1 Consolas,monospace; }
+        #progress { position:fixed; top:0; left:0; height:3px; background:#3BA0E8; z-index:100; }
+        .indicator { flex-shrink:0; border-color:#A8D8F5; }
+        .indicator.active { background:#3BA0E8; box-shadow:none; }
+        a:focus-visible,button:focus-visible { outline:3px solid #3BA0E8; outline-offset:3px; }
+        @media(prefers-reduced-motion:reduce) { .slide.active { animation:none; } * { transition:none !important; } }
+        @media(max-width:600px) {
+            body { overflow:auto; }
+            .presentation-container { position:relative; inset:auto; display:block; padding:0; }
+            .navigation { position:relative; top:auto; left:auto; transform:none; margin:20px auto 28px; }
+            .slide { width:100%; height:auto; min-height:calc(100svh - 88px); padding:90px 24px 80px; border-radius:0; transform:none; overflow:visible; background-image:none; box-shadow:none; }
+            .slide-header { left:24px; right:24px; bottom:36px; }
+            .slide::before { display:block; height:70px; background:url('assets/summit-content.png') left top/960px 540px no-repeat; }
+            .slide::before { background-size:960px 540px; }
+            .slide::after { height:36px; }
+            .slide-title { background-image:none; }
+            .slide-title::before { display:block; background-image:url('assets/summit-dark.png'); }
+            .slide-title::after { display:none; }
+            .slide-section { background-image:none; }
+            .slide-section::before { background-image:url('assets/summit-dark.png'); }
+            .slide-section h2 { font-size:36px; }
+            .slide-section p { font-size:20px !important; }
+            h1 { font-size:32px !important; }
+            .slide-title h1 { font-size:32px !important; }
+            h2 { font-size:26px; }
+            h3 { font-size:21px; }
+            .two-column,.three-column,.comparison-grid,.resource-layout,.pattern-flow { grid-template-columns:1fr; }
+            .feature-list li { display:block; overflow-wrap:anywhere; }
+            .slide-indicators { display:none; }
+            .code-box { font-size:14px; padding:16px; }
+            .resource-layout { gap:24px; }
+            .slide.sponsor-slide { min-height:0; }
+            .slide.sponsor-slide::before { display:none; }
+            .sponsor-slide img { height:auto; }
+        }
     </style>
 </head>
 <body>
+    <div id="progress"></div>
     <div class="presentation-container">
         
     <!-- Slide 1: Title  -->
-    <div class="slide active slide-pq">
+    <div class="slide active slide-pq slide-title">
         <div class="slide-header">
             <div class="slide-number">1 / 15</div>
         </div>
@@ -513,18 +619,15 @@
         </h1>
 
         <p class="subtitle" style="font-size: 1.2em; margin-top: 0; margin-bottom: 1.2em;">
-            90-Minute Deep Dive into the Magic Beyond the Basics
+            The Cloud &amp; AI Summit 2026 · Data &amp; Analytics / Low Code
         </p>
 
-        <div class="visual-box" style="font-size: 1.1em; background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%); padding: 1.2em; border-radius: 10px; margin-bottom: 1.2em; border: 2px solid rgba(16,124,16,0.3);">
-            <strong>🎯 Focus:</strong> Best Practices • Hidden Tricks • Real-World Patterns<br>
-            <strong>💼 Platform:</strong> Power BI • Dataflows • Excel
-        </div>
+        <p class="session-meta">Friday, October 2, 2026 · 10:15–11:45 AM · Integrity</p>
 
         <div class="author" style="font-size: 1em; color: #555; line-height: 1.8;">
             <strong>Speaker: Chris Cusumano</strong><br>
-            <em>Business Intelligence Architect @ Quickbase</em><br>
-            Making analytics approachable and actionable since 2018 🚀
+            Senior Data Engineer | Microsoft<br>
+            Practical patterns for Power BI, Dataflows, and Excel
         </div>
 
         <div class="visual-box" style="margin-top: 20px; text-align: center;">
@@ -538,434 +641,319 @@
         <div class="slide-header">
             <div class="slide-number">2 / 15</div>
         </div>
-        <h2>📋 Agenda: What We'll Cover</h2>
-        <div class="subtitle">A Journey Through Power Query Mastery</div>
-        
-        <div class="two-column" style="grid-template-columns: 1fr;">
-            <div class="feature-card" style="padding: 25px;">
+        <h2>What we'll cover</h2>
+        <div class="subtitle">Practical Power Query patterns, from the basics to reusable solutions.</div>
+        <div class="two-column">
+            <div class="feature-card">
                 <ul class="feature-list">
-                    <li><span class="checkmark">✓</span> <strong>The Foundation:</strong> Why Power Query is Critical</li>
-                    <li><span class="checkmark">✓</span> <strong>Performance Optimization:</strong> Speed Up Your Refreshes</li>
-                    <li><span class="checkmark">✓</span> <strong>Parameter Magic:</strong> Dynamic & Flexible Queries</li>
-                    <li><span class="checkmark">✓</span> <strong>Type System:</strong> Proper Data Types Matter</li>
-                    <li><span class="checkmark">✓</span> <strong>Debugging:</strong> Finding & Fixing Issues Fast</li>
-                    <li><span class="checkmark">✓</span> <strong>Duplicates vs References:</strong> Understanding the Difference</li>
-                    <li><span class="checkmark">✓</span> <strong>Remove Duplicates:</strong> The Hidden Gotcha</li>
-                    <li><span class="checkmark">✓</span> <strong>Error Handling:</strong> Bulletproof Your Transformations</li>
-                    <li><span class="checkmark">✓</span> <strong>Table Operations:</strong> Merge, Append & Group Magic</li>
-                    <li><span class="checkmark">✓</span> <strong>Custom Functions:</strong> Reusable Logic Patterns</li>
-                    <li><span class="checkmark">✓</span> <strong>Date Intelligence:</strong> Calendar Tables & Beyond</li>
+                    <li><span><strong>The basics:</strong> good habits &amp; data types</span></li>
+                    <li><span><strong>Parameters:</strong> switch environments</span></li>
+                    <li><span><strong>Development:</strong> filter with one switch</span></li>
+                    <li><span><strong>Duplicates:</strong> keep the right row</span></li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <ul class="feature-list">
+                    <li><span><strong>Functions:</strong> write once, reuse</span></li>
+                    <li><span><strong>Queries as variables:</strong> go beyond linear steps</span></li>
+                    <li><span><strong>Resilience:</strong> handle unexpected changes</span></li>
+                    <li><span><strong>Date tables:</strong> follow your data</span></li>
                 </ul>
             </div>
         </div>
-        
-        <div class="tip-box" style="text-align: center; margin-top: 25px;">
-            <strong>💡 Interactive Session:</strong> Feel free to ask questions as we go!<br>
-            Use arrow keys ← → or navigation buttons to move through slides
-        </div>
+        <div class="tip-box"><strong>Demos throughout.</strong> Wrap up with key takeaways, Q&amp;A, and resources.</div>
     </div>
 
-    <!-- Slide 3: Why Power Query Matters  -->
     <div class="slide slide-success">
-        <div class="slide-header">
-            <div class="slide-number">3 / 15</div>
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Opening</span>
+        <h2>Small changes. Less repeated work.</h2>
+        <div class="pattern-flow">
+            <div><strong>Configure</strong><span>Change an environment or working set without rewriting every query.</span></div>
+            <div><strong>Reuse</strong><span>Apply one matching or cleaning rule wherever it is needed.</span></div>
+            <div><strong>Validate</strong><span>Check the data you produced, not just whether refresh succeeded.</span></div>
         </div>
-        <h2>🎯 Why Power Query is Where It All Begins</h2>
-        
-        <div class="highlight-text">
-            "Power Query is where most BI solutions truly begin. Power BI wouldn't be what it is today without the flexibility and magic of Power Query."
-        </div>
-
-        <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">🔥 The Reality</div>
-                <ul class="feature-list">
-                    <li><span class="checkmark">✓</span> Upstream transformations don't always exist</li>
-                    <li><span class="checkmark">✓</span> Data sources are messy</li>
-                    <li><span class="checkmark">✓</span> Requirements change constantly</li>
-                    <li><span class="checkmark">✓</span> Self-service BI needs flexibility</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚡ The Power</div>
-                <ul class="feature-list">
-                    <li><span class="star">★</span> Low-code transformation</li>
-                    <li><span class="star">★</span> 400+ built-in connectors</li>
-                    <li><span class="star">★</span> Incremental refresh support</li>
-                    <li><span class="star">★</span> Shared across platforms</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="visual-box">
-            <strong>🎬 Demo Note:</strong> We'll see practical examples of each concept throughout this session
-        </div>
+        <div class="highlight-text">Low-code does not mean no logic. It means applying a useful pattern without rebuilding it every time.</div>
+        <div class="demo-focus"><strong>Today's examples:</strong> College Majors, Food Survey, Biopics, Wide Receivers, Thanksgiving Dinner, and Daily Show Guests.</div>
     </div>
 
-    <!-- Slide 4: Performance Optimization  -->
-    <div class="slide slide-advanced">
-        <div class="slide-header">
-            <div class="slide-number">4 / 15</div>
-        </div>
-        <h2>⚡ Performance Optimization Secrets</h2>
-        
-        <div class="highlight-text">
-            The difference between a 5-minute refresh and a 30-second refresh often comes down to these techniques!
-        </div>
-
-        <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">🚀 DO These</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Filter early (close to source)</li>
-                    <li><span class="checkmark">✓</span> Remove unnecessary columns</li>
-                    <li><span class="checkmark">✓</span> Use simple transformations when possible</li>
-                    <li><span class="checkmark">✓</span> Use Table.Buffer strategically</li>
-                    <li><span class="checkmark">✓</span> Disable query load when not needed</li>
-                    <li><span class="checkmark">✓</span> Use staging queries</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">🛑 AVOID These</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="warning">✗</span> Loading massive tables to UI</li>
-                    <li><span class="warning">✗</span> Unnecessary Table.Buffer</li>
-                    <li><span class="warning">✗</span> Complex custom columns</li>
-                    <li><span class="warning">✗</span> Multiple merges on same data</li>
-                    <li><span class="warning">✗</span> Sorting when not needed</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="tip-box">
-            <strong>💡 Secret #10:</strong> Use "Reference" not "Duplicate" when you want to reuse a query - it avoids reprocessing!
-        </div>
-    </div>
-
-    <!-- Slide 5: Parameters - The Foundation  -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">5 / 15</div>
-        </div>
-        <h2>🔧 Parameter Magic: Dynamic Everything</h2>
-        
-        <div class="tip-box">
-            <strong>💡 Secret #1:</strong> Parameters make your queries infinitely more flexible and reusable
-        </div>
-
-        <h3>Why Use Parameters?</h3>
-        <ul class="feature-list">
-            <li><span class="checkmark">✓</span> Change data sources without editing queries</li>
-            <li><span class="checkmark">✓</span> Build environment-specific solutions (Dev/Test/Prod)</li>
-            <li><span class="checkmark">✓</span> Create dynamic date ranges and filters</li>
-            <li><span class="checkmark">✓</span> Enable user-driven scenarios</li>
-        </ul>
-
-        <div class="warning-box">
-            <strong>⚠️ Pro Tip:</strong> Always document your parameters with descriptions. Future you will thank present you!
-        </div>
-    </div>
-
-    <!-- Slide 6: Type System  -->
     <div class="slide slide-info">
-        <div class="slide-header">
-            <div class="slide-number">6 / 15</div>
-        </div>
-        <h2>🎯 The Type System: Why It Matters</h2>
-        
-        <div class="warning-box">
-            <strong>Common Mistake:</strong> Ignoring data types leads to slow refreshes, unexpected errors, and wrong calculations
-        </div>
-
-        <h3>Secret #7: Set Types Early and Explicitly</h3>
-
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">The basics · Query habits</span>
+        <h2>Start with good habits</h2>
         <div class="two-column">
-            <div class="bad-practice">
-                <div class="practice-title">❌ Don't Do This</div>
-                <p style="font-size: 12px; padding: 10px;">Let Power Query guess types - all columns as "Any", slow performance, potential errors</p>
-            </div>
-            <div class="good-practice">
-                <div class="practice-title">✓ Do This</div>
-                <p style="font-size: 12px; padding: 10px;">Explicitly set types using Table.TransformColumnTypes for better performance and reliability</p>
-            </div>
+            <div class="feature-card"><div class="feature-title">Keep the work focused</div><ul class="feature-list"><li>Filter unneeded rows early.</li><li>Remove columns you will not use.</li><li>Preserve query folding where supported.</li></ul></div>
+            <div class="feature-card"><div class="feature-title">Keep the query understandable</div><ul class="feature-list"><li>Name steps and group related queries.</li><li>Disable load for helper-only queries.</li><li>Check errors, nulls, and unexpected values.</li></ul></div>
         </div>
-
-        <div class="feature-list">
-            <li><span class="checkmark">✓</span> <strong>Better Performance:</strong> Typed data processes faster</li>
-            <li><span class="checkmark">✓</span> <strong>Optimized Processing:</strong> Type operations are efficient</li>
-            <li><span class="checkmark">✓</span> <strong>Error Detection:</strong> Catch issues early</li>
-            <li><span class="checkmark">✓</span> <strong>DAX Compatibility:</strong> Smooth handoff to data model</li>
-        </div>
+        <div class="tip-box"><strong>Measure, do not assume.</strong> A query reference is not a shared cache. Table.Buffer is not an automatic performance improvement.</div>
+        <div class="demo-focus"><strong>Quick check:</strong> Use column quality and profiling. Profiling defaults to the first 1,000 rows; switch to the entire dataset when validating.</div>
     </div>
 
-    <!-- Slide 7: Debugging Techniques  -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">7 / 15</div>
-        </div>
-        <h2>🔍 Debugging: Find & Fix Issues Fast</h2>
-        
-        <h3>Secret #9: Power Query Debugging Toolkit</h3>
-
-        <div class="three-column">
-            <div class="feature-card">
-                <div class="feature-title">🎯 Formula Bar</div>
-                <div class="feature-desc">Use it! Shows exact M code for each step. Click to edit.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">👁️ Column Quality</div>
-                <div class="feature-desc">Shows valid, error, and empty percentages per column.</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">📊 Column Profile</div>
-                <div class="feature-desc">Reveals distribution, min, max, unique values.</div>
-            </div>
-        </div>
-
-        <div class="warning-box">
-            <strong>⚠️ Remember:</strong> Remove or comment out debugging steps before production!
-        </div>
-    </div>
-
-    <!-- Slide 8: Duplicates vs References in Power BI  -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">8 / 15</div>
-        </div>
-        <h2>🔄 Duplicates vs References: Understanding the Difference in Power BI</h2>
-        
-        <div class="highlight-text">
-            One of the most misunderstood concepts! Duplicating vs Referencing queries has major implications once your data is in the model.
-        </div>
-
-        <h3>What Happens in Power Query:</h3>
-
-        <div class="comparison-grid">
-            <div class="good-practice">
-                <div class="practice-title">✓ Reference Query</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Points to the original query</li>
-                    <li><span class="checkmark">✓</span> Source query runs ONCE</li>
-                    <li><span class="checkmark">✓</span> Adds transformations on top</li>
-                    <li><span class="checkmark">✓</span> Efficient and fast</li>
-                    <li><span class="checkmark">✓</span> Changes to source flow through</li>
-                </ul>
-            </div>
-            <div class="bad-practice">
-                <div class="practice-title">✗ Duplicate Query</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="warning">✗</span> Creates independent copy</li>
-                    <li><span class="warning">✗</span> Source query runs TWICE</li>
-                    <li><span class="warning">✗</span> Completely separate lineage</li>
-                    <li><span class="warning">✗</span> Slower, more resource intensive</li>
-                    <li><span class="warning">✗</span> Changes to source DON'T flow through</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3>What Happens in the Power BI Model:</h3>
-
+    <div class="slide slide-info">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">The basics · Data types</span>
+        <h2>Choose the right types</h2>
         <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">📊 Reference Behavior</div>
-                <ul class="feature-list" style="font-size: 13px;">
-                    <li><span class="checkmark">✓</span> Creates separate table in model</li>
-                    <li><span class="checkmark">✓</span> Each table takes memory independently</li>
-                    <li><span class="checkmark">✓</span> Can create relationships between them</li>
-                    <li><span class="checkmark">✓</span> Refresh is optimized (source loads once)</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚠️ Duplicate Behavior</div>
-                <ul class="feature-list" style="font-size: 13px;">
-                    <li><span class="warning">⚠️</span> Also creates separate table in model</li>
-                    <li><span class="warning">⚠️</span> Same memory footprint as reference</li>
-                    <li><span class="warning">⚠️</span> Can also have relationships</li>
-                    <li><span class="warning">⚠️</span> Slower refresh (source loads twice)</li>
-                </ul>
-            </div>
+            <div class="feature-card"><div class="feature-title">Meaning comes first</div><ul class="feature-list"><li><strong>Text:</strong> identifiers such as 00123.</li><li><strong>Date / DateTime:</strong> keep the time only when needed.</li><li><strong>True/False:</strong> yes/no flags.</li></ul></div>
+            <div class="feature-card"><div class="feature-title">Pick the numeric precision</div><ul class="feature-list"><li><strong>Whole number:</strong> counts and integers.</li><li><strong>Decimal number:</strong> fractional values; floating-point precision.</li><li><strong>Fixed decimal:</strong> exact values to four decimal places.</li></ul></div>
         </div>
-
-        <div class="tip-box">
-            <strong>💡 Key Insight:</strong> In the final model, both References and Duplicates create separate tables with separate memory. The BIG difference is refresh performance and maintainability during development!
-        </div>
-
-        <div class="warning-box">
-            <strong>⚠️ Best Practice:</strong> Always use Reference unless you specifically need an independent copy that won't change when the source changes. Your refresh times will thank you!
-        </div>
+        <div class="tip-box"><strong>Set types explicitly.</strong> Review automatic Changed Type steps instead of leaving final columns as Any. Use the correct locale when parsing dates and numbers.</div>
+        <div class="demo-focus"><strong>Quick check:</strong> Confirm leading zeros survive, dates parse as intended, and type conversions do not introduce errors.</div>
     </div>
 
-    <!-- Slide 9: Remove Duplicates - Power BI vs Power Query  -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">9 / 15</div>
+    <div class="slide slide-section" data-section="Parameters">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">01 / 06</span>
+        <h2>Parameters</h2>
+        <p>Change environments and development filters without editing every query.</p>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="College Majors - All Ages|College Majors - Recent Grads|Repo|Branch|College Majors - All Ages - With Parameter|College Majors - Recent Grads - With Parameter">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Parameters</span>
+        <h2>Same solution. Different environment.</h2>
+        <p>The query logic stays the same across development, test, and production. Only the connection settings change.</p>
+        <div class="pattern-flow">
+            <div><strong>Define parameters</strong><span>Replace fixed source settings with values your queries share.</span></div>
+            <div><strong>Set the destination</strong><span>Choose values locally or configure them for the target workspace.</span></div>
+            <div><strong>Reuse the logic</strong><span>Refresh against the selected source without rewriting transformations.</span></div>
         </div>
-        <h2>🔍 Remove Duplicates: The Hidden Gotcha</h2>
-        
-        <div class="warning-box">
-            <strong>Critical Issue:</strong> Remove Duplicates behaves differently in Power BI Desktop vs Power Query - and it can break your relationships!
+        <div class="tip-box"><strong>Deployment:</strong> Set target values manually or through supported deployment rules. Publishing alone does not switch environments; source access must also be configured.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Compare the baseline College Majors queries with With Parameter. Change Repo and Branch; both queries follow the new settings.</div>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="Environment Parameter|EnvironmentMapping|Repository|BranchSelection|College Majors - All Ages - With ParameterMapping|College Majors - Recent Grads - With ParameterMapping">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Parameters with functions</span>
+        <h2>Many environments. One shared configuration.</h2>
+        <p>Maintain environment settings outside individual files. Anyone with access can connect to the same shared configuration.</p>
+        <div class="pattern-flow">
+            <div><strong>Define centrally</strong><span>Maintain a shared mapping of approved environments and their settings.</span></div>
+            <div><strong>Select locally</strong><span>Each file uses a parameter to choose its environment.</span></div>
+            <div><strong>Retrieve with functions</strong><span>Look up that environment's settings and use them in the queries.</span></div>
         </div>
+        <div class="tip-box"><strong>Update once, reuse on refresh.</strong> Keep allowed environment choices in sync, require one matching configuration, and grant access to the mapping and source.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Select Environment Parameter. Follow EnvironmentMapping through Repository and BranchSelection into both College Majors queries.</div>
+    </div>
 
-        <h3>The Problem: Case Sensitivity & Whitespace</h3>
-
-        <div class="comparison-grid">
-            <div class="bad-practice">
-                <div class="practice-title">❌ Power BI Desktop</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="warning">⚠️</span> Case-insensitive by default</li>
-                    <li><span class="warning">⚠️</span> "Product" = "product" = "PRODUCT"</li>
-                    <li><span class="warning">⚠️</span> Ignores trailing spaces, but respects leading spaces</li>
-                    <li><span class="warning">⚠️</span> "ABC" = "ABC " ≠ " ABC"</li>
-                </ul>
-            </div>
-            <div class="good-practice">
-                <div class="practice-title">✓ Power Query (Excel/Dataflows)</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Case-sensitive by default</li>
-                    <li><span class="checkmark">✓</span> "Product" ≠ "product" ≠ "PRODUCT"</li>
-                    <li><span class="checkmark">✓</span> Respects leading/trailing spaces</li>
-                    <li><span class="checkmark">✓</span> "ABC" ≠ "ABC " ≠ " ABC"</li>
-                    <li><span class="checkmark">✓</span> All are treated as unique</li>
-                </ul>
-            </div>
-        </div>
-
-        <h3>💥 Why This Breaks Relationships:</h3>
-
+    <div class="slide slide-pq" data-demo-queries="Food Survey|FILTER|Food Survey - Filter Example">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Parameters · Development filtering</span>
+        <h2>Filter for development. Not query by query.</h2>
+        <p>Connect your queries to one shared parameter once. Then switch development filtering on or off in one place.</p>
         <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">⚠️ Scenario</div>
-                <ul class="feature-list" style="font-size: 13px;">
-                    <li><span class="warning">1.</span> Dim table is no longer unique in Power BI</li>
-                    <li><span class="warning">2.</span> Power BI only chooses one variation</li>
-                    <li><span class="warning">3.</span> Source table still has both variations</li>
-                    <li><span class="warning">4.</span> Relationship breaks when the dimension is many to one</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">✓ Solution</div>
-                <ul class="feature-list" style="font-size: 13px;">
-                    <li><span class="checkmark">✓</span> Clean data BEFORE remove duplicates</li>
-                    <li><span class="checkmark">✓</span> Use Text.Upper() or Text.Lower() to normalize case</li>
-                    <li><span class="checkmark">✓</span> Use Text.Trim() to remove leading/trailing spaces</li>
-                    <li><span class="checkmark">✓</span> Apply same cleaning to both dimension and fact tables</li>
-                </ul>
-            </div>
+            <div class="feature-card"><div class="feature-title">During development</div><div class="comparison-value">FILTER = true</div><p>Work with a smaller dataset across the queries using the parameter.</p></div>
+            <div class="feature-card"><div class="feature-title">Ready for full data</div><div class="comparison-value">FILTER = false</div><p>Disable development filtering without removing filter steps from each query.</p></div>
         </div>
-
-        <div class="tip-box">
-            <strong>💡 Pro Tip:</strong> Always test your relationships after using Remove Duplicates. Check for blanks in your visuals - that's often a sign of broken relationships due to this issue!
-        </div>
-
-        <div class="warning-box">
-            <strong>⚠️ Best Practice:</strong> When working across Power BI Desktop and Excel/Dataflows, standardize your data cleaning approach early. Create a custom function for consistent normalization to avoid this gotcha!
-        </div>
+        <div class="tip-box"><strong>Set up once. Toggle centrally.</strong> Only queries wired to FILTER respond. Validate with full data before publishing.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Toggle FILTER once. Inspect both Food Survey filter examples; the baseline stays unchanged.</div>
     </div>
 
-    <!-- Slide 10: Error Handling  -->
-    <div class="slide slide-warning">
-        <div class="slide-header">
-            <div class="slide-number">10 / 15</div>
+    <div class="slide slide-advanced" data-demo-queries="FilterRowCount|Food Survey - DynamicFilter&Count Filter">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Parameters · More control with another parameter</span>
+        <h2>Same filter. More customization.</h2>
+        <p>Both examples use a parameter to turn filtering on or off. The second adds another parameter so you can choose how many rows to keep.</p>
+        <div class="pattern-flow">
+            <div><strong>Start with the switch</strong><span>FILTER controls whether development filtering applies in both examples.</span></div>
+            <div><strong>Add a row-count parameter</strong><span>FilterRowCount replaces the fixed limit in the second example.</span></div>
+            <div><strong>Adjust in one place</strong><span>Choose the sample size or turn filtering off without editing query steps.</span></div>
         </div>
-        <h2>🛡️ Error Handling: Bulletproof Your Queries</h2>
-        
-        <div class="warning-box">
-            <strong>The Problem:</strong> One missing column, one renamed field, one unexpected null value = entire refresh fails
-        </div>
-
-        <h3>Secret #2: Use try...otherwise Everywhere</h3>
-        
-
-        <div class="tip-box">
-            <strong>💡 Pro Pattern:</strong> Create error logging tables to track which rows failed and why!
-        </div>
+        <div class="warning-box"><strong>Less downstream work is not necessarily a smaller download.</strong> This CSV example filters after reading the source; it does not demonstrate server-side folding.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Change FilterRowCount from 500 to 100. The dynamic example follows; the fixed example stays at 50. Set FILTER to false to disable both limits.</div>
     </div>
 
-    <!-- Slide 11: Table Operations  -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">11 / 15</div>
+    <div class="slide slide-section" data-section="Duplicates">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">02 / 06</span>
+        <h2>Duplicates</h2>
+        <p>Decide which values match and which row stays.</p>
+    </div>
+
+    <div class="slide slide-warning" data-demo-queries="Biopics|Biopics - Fact|Biopics - Dimension">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Duplicate keys · Biopics</span>
+        <h2>Distinct in Power Query. Equal in Power BI.</h2>
+        <table class="sample-table"><thead><tr><th>Illustrative values</th><th>Power Query</th><th>Power BI model (AS engine)</th></tr></thead><tbody>
+            <tr><td><code>"Film A"<br>"FILM A"<br>"Film A "</code></td><td>Three distinct values</td><td>All three are the same value</td></tr>
+        </tbody></table>
+        <div class="tip-box"><strong>Different comparison rules.</strong> Power Query is case-sensitive and preserves leading and trailing spaces unless you remove them. The model ignores casing and removes trailing spaces, but keeps leading spaces.</div>
+        <p><strong>Leading spaces still matter:</strong> <code>" Film A"</code> and <code>"Film A"</code> are distinct in both.</p>
+        <div class="demo-focus"><strong>Demo:</strong> Compare Biopics - Fact and Biopics - Dimension before and after Remove Duplicates.</div>
+    </div>
+
+    <div class="slide slide-info" data-demo-queries="Biopics - Dimension-Retain Casing">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Duplicate keys · Keep the display text</span>
+        <h2>Normalize the key. Keep the label.</h2>
+        <div class="pattern-flow">
+            <div><strong>Copy</strong><span>Keep the original title and create a temporary comparison column.</span></div>
+            <div><strong>Normalize</strong><span>Trim and apply proper case to the helper column.</span></div>
+            <div><strong>Deduplicate</strong><span>Match on the helper, then remove it. The surviving display text stays.</span></div>
         </div>
-        <h2>🔄 Table Operations: Merge, Append & Group</h2>
-        
-        <h3>Merge (Joins) - SQL Users Will Love This</h3>
-        
+        <div class="tip-box"><strong>Separate identity from appearance.</strong> A matching rule need not overwrite the text your users see.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Step through Biopics - Dimension-Retain Casing. Compare the original title and title - Copy.</div>
+    </div>
+
+    <div class="slide slide-warning" data-demo-queries="Biopics - Sorted Duplicates">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Duplicate rows · Keep a specific row</span>
+        <h2>Which duplicate do you want to keep?</h2>
+        <p>The latest record? The highest-priority source? Sometimes removing duplicates also means choosing a specific winner.</p>
         <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">Join Types</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Inner</li>
-                    <li><span class="checkmark">✓</span> Left Outer</li>
-                    <li><span class="checkmark">✓</span> Right Outer</li>
-                    <li><span class="checkmark">✓</span> Full Outer</li>
-                    <li><span class="checkmark">✓</span> Left Anti</li>
-                    <li><span class="checkmark">✓</span> Right Anti</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚡ Pro Tips</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Use anti joins for data quality checks</li>
-                    <li><span class="star">★</span> Expand only needed columns</li>
-                    <li><span class="star">★</span> Filter before merging for better performance</li>
-                </ul>
-            </div>
+            <div class="feature-card"><div class="feature-title">The expectation</div><p>Sort the preferred row to the top, then Remove Duplicates keeps that first row.</p></div>
+            <div class="feature-card"><div class="feature-title">Sorting alone is not enough</div><p>Power Query's evaluation and optimizations do not guarantee that Remove Duplicates preserves the preceding sort order.</p></div>
         </div>
-
-        <div class="tip-box">
-            <strong>💡 Secret #5:</strong> Use Table.NestedJoin instead of Merge Queries UI for more control
-        </div>
+        <div class="tip-box"><strong>A sorted preview is not a retention guarantee.</strong> Check which record survives, not just whether duplicates were removed.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Open Biopics - Sorted Duplicates. Compare the sorted rows with the row retained after Remove Duplicates.</div>
     </div>
 
-    <!-- Slide 12: Custom Functions  -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">12 / 15</div>
+    <div class="slide slide-info" data-demo-queries="Biopics - Dimension-Retain Sort|Biopics - Dimension-Retain Casing & Sort">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Duplicate rows · The solution</span>
+        <h2>Use the index method</h2>
+        <p>In this tested example, adding an index after sorting preserves the intended row during deduplication.</p>
+        <div class="pattern-flow">
+            <div><strong>Sort + add an index</strong><span>Put the preferred row first, then add the index column.</span></div>
+            <div><strong>Remove duplicates</strong><span>Select the intended duplicate key, not the index.</span></div>
+            <div><strong>Remove the index</strong><span>Discard the helper column and check the retained row.</span></div>
         </div>
-        <h2>🔨 Custom Functions: Write Once, Use Everywhere</h2>
-        
-        <div class="highlight-text">
-            Stop copying and pasting transformations! Custom functions make your code DRY (Don't Repeat Yourself) and maintainable.
-        </div>
+        <div class="tip-box"><strong>Choose the winner and the matching rule.</strong> Define tie-breakers for equal sort values. Combine with the normalized helper key when casing and spaces also need handling.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Open Biopics - Dimension-Retain Sort, then Retain Casing &amp; Sort to combine both patterns.</div>
+    </div>
 
-        <h3>Secret #3: Turn Repeated Logic into Functions</h3>
-        
+    <div class="slide slide-section" data-section="Functions">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">03 / 06</span>
+        <h2>Functions</h2>
+        <p>Define the rule once. Apply it wherever it is needed.</p>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="Wide Receivers|Prep for Duplicates|Wide Receivers - Prep For Duplicates Function">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Functions · Wide Receivers</span>
+        <h2>Package the rule. Apply it again.</h2>
+        <table class="sample-table"><thead><tr><th>Illustrative input</th><th>Prep for Duplicates</th><th>Purpose</th></tr></thead><tbody>
+            <tr><td><code>"  aLEX  "</code></td><td>Alex</td><td>Trim and normalize casing</td></tr>
+            <tr><td>null</td><td>null</td><td>Preserve a missing value</td></tr>
+        </tbody></table>
+        <div class="tip-box"><strong>One definition, consistent application.</strong> Invoke the function into a helper column, deduplicate on that value, then remove the helper.</div>
+        <p>This example compares first names, not player identities. A real player dimension needs an appropriate key.</p>
+        <div class="demo-focus"><strong>Demo:</strong> Invoke Prep for Duplicates and inspect the Wide Receivers function example before and after deduplication.</div>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="Clean Name|Wide Receivers - Cleaned Column">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Functions · A character-cleaning policy</span>
+        <h2>Make the cleaning rule explicit</h2>
         <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">✓ Benefits</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Consistent logic</li>
-                    <li><span class="checkmark">✓</span> Easy to update</li>
-                    <li><span class="checkmark">✓</span> Testable</li>
-                    <li><span class="checkmark">✓</span> Shareable</li>
-                </ul>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">⚡ Use Cases</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Data cleaning</li>
-                    <li><span class="star">★</span> API calls</li>
-                    <li><span class="star">★</span> Type conversions</li>
-                    <li><span class="star">★</span> Business rules</li>
-                </ul>
-            </div>
+            <div class="feature-card"><div class="feature-title">What Clean Name does</div><ul class="feature-list"><li>Converts square brackets to parentheses</li><li>Keeps allowed letters, numbers, and punctuation</li><li>Replaces other characters; trims the ends</li></ul></div>
+            <div class="feature-card"><div class="feature-title">What to verify</div><ul class="feature-list"><li>Which characters the business must preserve</li><li>How nulls and accented letters should behave</li><li>Whether cleaning creates matching values</li></ul></div>
         </div>
+        <div class="warning-box">This saved function accepts non-null text and an ASCII-based character list. It is not a universal name-cleaning policy.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Compare Custom and Custom.1 in Wide Receivers - Cleaned Column at the function-invocation step.</div>
     </div>
 
-    <!-- Slide 13: Date Intelligence  -->
-    <div class="slide slide-pq">
-        <div class="slide-header">
-            <div class="slide-number">13 / 15</div>
-        </div>
-        <h2>📅 Date Intelligence in Power Query</h2>
-        
-        <div class="highlight-text">
-            Create robust date tables in Power Query instead of DAX - it's faster and more flexible!
-        </div>
+    <div class="slide slide-section" data-section="Queries as Variables">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">04 / 06</span>
+        <h2>Queries as Variables</h2>
+        <p>Think beyond a straight line of steps: nest, branch, and reuse earlier results.</p>
+    </div>
 
-        <div class="tip-box">
-            <strong>💡 Secret #8:</strong> Use List.Dates() instead of looping - it's 100x faster!
+    <div class="slide slide-info" data-demo-queries="Thanksgiving Dinner|TempQuery|Thanksgiving Dinner - Variables within Query">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Queries as variables · Thanksgiving Dinner</span>
+        <h2>Steps do not have to form a straight line</h2>
+        <p>The Applied Steps list looks sequential. But each step uses the values it references, not automatically the step immediately above it.</p>
+        <div class="pattern-flow">
+            <div><strong>Nest a set of steps</strong><span>A local variable can contain a complete query and return its result.</span></div>
+            <div><strong>Branch from any step</strong><span>Use an earlier result as the starting point for another transformation.</span></div>
+            <div><strong>Reference it again</strong><span>Return to an older result without passing through every intervening step.</span></div>
         </div>
+        <div class="tip-box"><strong>References determine the flow.</strong> Bypass a step by referencing an earlier value. Any steps that value depends on are still needed.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Open Thanksgiving Dinner - Variables within Query. TempQuery contains a whole set of steps; the merge uses its result alongside the full survey.</div>
+    </div>
+
+    <div class="slide slide-info">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Queries as variables · Follow the references</span>
+        <h2>Use an earlier result again</h2>
+        <p>A filtered branch does not overwrite its input. The original value is still available to other steps in the same scope.</p>
+        <div class="two-column">
+            <div class="feature-card"><div class="feature-title">A whole query in one variable</div><p>TempQuery has its own source, filters, and shaping steps. Its final table becomes a value the outer query can use.</p></div>
+            <div class="feature-card"><div class="feature-title">An earlier step as another input</div><p>Reference Promoted headers for the full survey, even after creating a filtered branch. Merge the full table with the local lookup.</p></div>
+        </div>
+        <div class="tip-box"><strong>No undo required.</strong> Referencing an older step does not delete later steps. It chooses which result to use; it does not guarantee a cached copy.</div>
+        <div class="demo-focus"><strong>Demo:</strong> In a disposable copy, add a filtered branch after Promoted headers. Have the merge reference Promoted headers again and show that it still receives the full survey.</div>
+    </div>
+
+    <div class="slide slide-section" data-section="Refresh Resilience">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">05 / 06</span>
+        <h2>Refresh Resilience</h2>
+        <p>Handle missing columns and unavailable sources deliberately.</p>
+    </div>
+
+    <div class="slide slide-warning" data-demo-queries="Daily Show Guests|Daily Show Guests - Column Safety Example">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Refresh resilience · Daily Show Guests</span>
+        <h2>A missing column need not change the shape</h2>
+        <div class="pattern-flow">
+            <div><strong>Expect</strong><span>Declare the five output column names.</span></div>
+            <div><strong>Compare</strong><span>Find expected names missing from the incoming table.</span></div>
+            <div><strong>Shape</strong><span>Add missing columns as null, then keep the expected set.</span></div>
+        </div>
+        <div class="warning-box"><strong>Stable shape is not recovered data.</strong> A renamed field is not mapped back; its old name becomes null. Required fields need separate validation.</div>
+        <div class="demo-focus"><strong>Demo:</strong> In a disposable Column Safety copy, remove or rename a column after Promote Headers. Inspect the missing-column list and output.</div>
+    </div>
+
+    <div class="slide slide-warning" data-demo-queries="Daily Show Guests - Source Safety Example">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Refresh resilience · Source failure</span>
+        <h2>A green refresh can still mean missing data</h2>
+        <div class="two-column">
+            <div class="feature-card"><div class="feature-title">When the source succeeds</div><p>Read the source, promote headers, and shape the expected output.</p></div>
+            <div class="feature-card"><div class="feature-title">When the protected expression errors</div><p>Return an empty table with the expected columns, then apply the same shaping steps.</p></div>
+        </div>
+        <div class="warning-box"><strong>Empty is not last-known-good.</strong> This fallback can replace loaded rows with no data. It does not log the outage or catch every failure.</div>
+        <p>Inspect row counts and column quality. Profiling defaults to 1,000 rows; validate the full dataset when needed.</p>
+        <div class="demo-focus"><strong>Demo:</strong> Trigger a controlled error inside the Source Safety copy's protected expression. Inspect the zero-row result, then restore the source.</div>
+    </div>
+
+    <div class="slide slide-section" data-section="Date Tables">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">06 / 06</span>
+        <h2>Date Tables</h2>
+        <p>Consistent dates, keys, and business rules for DAX and time intelligence.</p>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="Date Table from AI">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Date tables · A foundation for DAX</span>
+        <h2>Give DAX a consistent calendar</h2>
+        <p>A date table is more than a list of dates. It gives measures and reports a shared way to define and compare periods.</p>
+        <div class="pattern-flow">
+            <div><strong>Dates</strong><span>One unique, nonblank row per day, with no gaps across the required range.</span></div>
+            <div><strong>Keys and sorting</strong><span>Relate facts through the date or date key. Use numeric sort keys for month and period labels.</span></div>
+            <div><strong>Business rules</strong><span>Define fiscal years, quarters, week starts, and other business periods consistently.</span></div>
+        </div>
+        <div class="tip-box"><strong>Put the calendar to work.</strong> Configure relationships, sort labels, and mark the date table where required. Apply its rules in DAX for YTD, prior-year, and period comparisons.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Inspect Date Table from AI: Date, Month Number, YearMonthSort, and fiscal fields. Validate the template's January fiscal-year start against the business rules.</div>
+    </div>
+
+    <div class="slide slide-pq" data-demo-queries="Daily Show Guests Fact|Date Table from Fact">
+        <div class="slide-header"><div class="slide-number"></div></div>
+        <span class="scenario-label">Date tables · Follow the fact data</span>
+        <h2>Size the calendar to your data</h2>
+        <p>Another option for smaller models: derive the range from the fact table instead of generating decades of dates you do not need.</p>
+        <div class="pattern-flow">
+            <div><strong>Read the fact dates</strong><span>Use a correctly typed date column to find the minimum and maximum.</span></div>
+            <div><strong>Build every day</strong><span>Generate a continuous calendar, including days with no fact rows.</span></div>
+            <div><strong>Allow room to grow</strong><span>Extend the boundaries for complete years, fiscal periods, and planning dates.</span></div>
+        </div>
+        <div class="tip-box"><strong>Match the range to the need.</strong> Classic time intelligence needs full-year coverage. On large fact tables, measure the cost of finding boundaries or use a maintained range.</div>
+        <div class="demo-focus"><strong>Demo:</strong> Date Table from Fact uses the guest data's 1999-2015 range. The saved query uses exact min/max dates; add empty-data handling and any required year or future-date padding.</div>
     </div>
 
     <!-- Slide 14: Best Practices Checklist  -->
@@ -982,20 +970,16 @@
                 <div class="feature-title">📋 Query Design</div>
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="checkmark">✓</span> Use parameters for flexibility</li>
-                    <li><span class="checkmark">✓</span> Document with step names</li>
-                    <li><span class="checkmark">✓</span> Keep queries modular</li>
-                    <li><span class="checkmark">✓</span> Use folders to organize</li>
+                    <li><span class="checkmark">✓</span> Organize modular queries in folders</li>
                     <li><span class="checkmark">✓</span> Disable load for staging queries</li>
                 </ul>
             </div>
             <div class="feature-card">
                 <div class="feature-title">⚡ Performance</div>
                 <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Keep transformations simple and efficient</li>
-                    <li><span class="checkmark">✓</span> Filter early and often</li>
-                    <li><span class="checkmark">✓</span> Remove unused columns</li>
+                    <li><span class="checkmark">✓</span> Filter early; remove unused columns</li>
                     <li><span class="checkmark">✓</span> Set data types explicitly</li>
-                    <li><span class="checkmark">✓</span> Use references not duplicates</li>
+                    <li><span class="checkmark">✓</span> Measure source reads and preserve folding</li>
                 </ul>
             </div>
         </div>
@@ -1004,18 +988,16 @@
             <div class="feature-card">
                 <div class="feature-title">🛡️ Reliability</div>
                 <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="checkmark">✓</span> Add error handling (try/otherwise)</li>
-                    <li><span class="checkmark">✓</span> Validate data quality</li>
-                    <li><span class="checkmark">✓</span> Test with edge cases</li>
-                    <li><span class="checkmark">✓</span> Handle missing columns</li>
+                    <li><span class="checkmark">✓</span> Handle expected errors; keep diagnostics</li>
+                    <li><span class="checkmark">✓</span> Validate quality and test edge cases</li>
+                    <li><span class="checkmark">✓</span> Handle optional gaps; require critical data</li>
                 </ul>
             </div>
             <div class="feature-card">
                 <div class="feature-title">🔧 Maintainability</div>
                 <ul class="feature-list" style="font-size: 14px;">
                     <li><span class="checkmark">✓</span> Create reusable functions</li>
-                    <li><span class="checkmark">✓</span> Use clear naming conventions</li>
-                    <li><span class="checkmark">✓</span> Comment complex logic</li>
+                    <li><span class="checkmark">✓</span> Name steps clearly; explain complex logic</li>
                     <li><span class="checkmark">✓</span> Version control your PBIX</li>
                 </ul>
             </div>
@@ -1028,72 +1010,34 @@
             <div class="slide-number">15 / 15</div>
         </div>
         <h2>🎓 Thank You! Resources & Next Steps</h2>
-        
-        <div class="highlight-text" style="text-align: center; font-size: 22px;">
-            You're now equipped to handle whatever chaos your data throws at you! 🚀
-        </div>
-
-        <h3>📚 Learning Resources:</h3>
-        <div class="two-column">
-            <div class="feature-card">
-                <div class="feature-title">📖 Essential Reading</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Microsoft Power Query M Reference</li>
-                    <li><span class="star">★</span> PowerQuery.how</li>
-                    <li><span class="star">★</span> SQLBI.com articles</li>
-                    <li><span class="star">★</span> Chris Webb's BI Blog</li>
-                    <li><span class="star">★</span> Guy in a Cube (YouTube)</li>
+        <div class="resource-layout">
+            <div>
+                <h3>Keep exploring</h3>
+                <ul class="feature-list">
+                    <li><a href="https://github.com/BeSmarterWithData/PowerQuerySecrets/tree/main" target="_blank" rel="noopener">Demo files &amp; code samples</a></li>
+                    <li><a href="https://learn.microsoft.com/en-us/powerquery-m/" target="_blank" rel="noopener">Microsoft Power Query M Reference</a></li>
+                    <li><a href="https://powerquery.how/" target="_blank" rel="noopener">PowerQuery.how</a></li>
+                    <li><a href="https://www.cloudandaisummit.com/content/sessiondetail/1334737" target="_blank" rel="noopener">Session feedback</a></li>
                 </ul>
+                <p>More learning: SQLBI, Chris Webb's BI Blog, Guy in a Cube, and the Power BI community.</p>
             </div>
-            <div class="feature-card">
-                <div class="feature-title">🤝 Community</div>
-                <ul class="feature-list" style="font-size: 14px;">
-                    <li><span class="star">★</span> Power BI Community Forum</li>
-                    <li><span class="star">★</span> Reddit r/PowerBI</li>
-                    <li><span class="star">★</span> LinkedIn Power BI Groups</li>
-                    <li><span class="star">★</span> Local user groups</li>
-                </ul>
-            </div>
+            <figure class="demo-qr"><a href="https://github.com/BeSmarterWithData/PowerQuerySecrets/tree/main" target="_blank" rel="noopener"><img src="pq-qr-code.png" width="240" height="240" alt="QR code for the PowerQuerySecrets demo repository"></a><figcaption>Demo files &amp; code samples</figcaption></figure>
         </div>
+        <p><strong>Chris Cusumano</strong> · Senior Data Engineer | Microsoft<br>Connect on LinkedIn or through your local Power BI user group.</p>
+    </div>
 
-        <div class="three-column" style="margin-top: 30px;">
-            <div class="feature-card">
-                <div class="feature-title">🎯 Practice</div>
-                <div class="feature-desc">Apply these patterns to your real data - that's where the magic happens!</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">🔍 Explore</div>
-                <div class="feature-desc">Use the Formula Bar and Advanced Editor to learn how Power Query works</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-title">🤝 Share</div>
-                <div class="feature-desc">Help others by sharing your discoveries and solutions</div>
-            </div>
-        </div>
-
-        <div style="text-align: center; margin-top: 30px; padding: 25px; background: linear-gradient(135deg, rgba(16,124,16,0.1) 0%, rgba(76,175,80,0.1) 100%); border-radius: 12px; border: 2px solid rgba(16,124,16,0.3);">
-            <h3 style="margin-bottom: 15px;">📧 Stay Connected</h3>
-            <p style="font-size: 18px; color: #333; margin-bottom: 10px;">
-                <strong>Chris Cusumano</strong><br>
-                Business Intelligence Architect @ Quickbase
-            </p>
-            <p style="font-size: 16px; color: #666;">
-                Questions? Find me on LinkedIn or at your local Power BI user group!
-            </p>
-        </div>
-
-        <div class="visual-box" style="margin-top: 20px; text-align: center;">
-            <strong>🎬 Demo Files & Code Samples:</strong> Available on GitHub<br>
-            <a href="https://github.com/BeSmarterWithData/PowerQuerySecrets" target="_blank" rel="noopener noreferrer" style="color: #107C10; text-decoration: none; font-weight: bold;">github.com/BeSmarterWithData/PowerQuerySecrets</a>
-        </div>
+    <div class="slide sponsor-slide" aria-label="Thank you to our summit sponsors">
+        <img src="assets/summit-sponsors.png" alt="The Cloud &amp; AI Summit 2026 sponsors: Anders, ArchitectNow, Microsoft, 4sight, Covenant Technology Partners, MiTek, Oakwood, Silika, Strategy, and Kepler.">
     </div>
 
     </div>
 
     <!-- Navigation -->
     <div class="navigation">
-        <button class="nav-btn" onclick="previousSlide()">← Previous</button>
-        <button class="nav-btn" onclick="nextSlide()">Next →</button>
+        <button class="nav-btn" id="prev" onclick="previousSlide()" aria-label="Previous slide" data-tooltip="Previous slide">←</button>
+        <span id="counter" aria-live="polite"></span>
+        <button class="nav-btn" id="next" onclick="nextSlide()" aria-label="Next slide" data-tooltip="Next slide">→</button>
+        <button class="nav-btn" id="fullscreen" aria-label="Toggle fullscreen" data-tooltip="Fullscreen">⛶</button>
     </div>
 
     <!-- Slide Indicators -->
@@ -1118,24 +1062,51 @@
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        const indicators = document.querySelectorAll('.indicator');
         const totalSlides = slides.length;
+        function fitSlides() {
+            const scale = Math.min(window.innerWidth / 1280, Math.max(1, window.innerHeight - 80) / 720) * 0.98;
+            document.documentElement.style.setProperty('--slide-scale', scale);
+            document.documentElement.style.setProperty('--slide-half-height', (720 * scale / 2) + 'px');
+        }
+        window.addEventListener('resize', fitSlides);
+        fitSlides();
+        const indicatorContainer = document.querySelector('.slide-indicators');
+        indicatorContainer.replaceChildren();
+        const indicators = Array.from(slides, (slide, index) => {
+            const indicator = document.createElement('button');
+            indicator.type = 'button';
+            indicator.className = 'indicator';
+            indicator.setAttribute('aria-label', 'Slide ' + (index + 1) + ': ' + (slide.querySelector('h1,h2')?.textContent.trim() || 'Sponsors'));
+            indicator.title = indicator.getAttribute('aria-label');
+            indicator.addEventListener('click', () => goToSlide(index));
+            indicatorContainer.append(indicator);
+            const number = slide.querySelector('.slide-number');
+            if (number) number.textContent = (index + 1) + ' / ' + totalSlides;
+            return indicator;
+        });
 
         function showSlide(index) {
+            currentSlide = Math.max(0, Math.min(totalSlides - 1, index));
+            index = currentSlide;
             slides.forEach(slide => slide.classList.remove('active'));
-            indicators.forEach(indicator => indicator.classList.remove('active'));
+            indicators.forEach(indicator => { indicator.classList.remove('active'); indicator.removeAttribute('aria-current'); });
             
             slides[index].classList.add('active');
             indicators[index].classList.add('active');
+            indicators[index].setAttribute('aria-current', 'step');
             
-            const prevBtn = document.querySelector('.navigation .nav-btn:first-child');
-            const nextBtn = document.querySelector('.navigation .nav-btn:last-child');
+            const prevBtn = document.getElementById('prev');
+            const nextBtn = document.getElementById('next');
             
             prevBtn.disabled = index === 0;
             nextBtn.disabled = index === totalSlides - 1;
+            document.getElementById('counter').textContent = (index + 1) + ' / ' + totalSlides;
+            document.getElementById('progress').style.width = ((index + 1) / totalSlides * 100) + '%';
             
             // Scroll to top of slide
             slides[index].scrollTop = 0;
+            window.scrollTo(0, 0);
+            history.replaceState(null, '', '#' + (index + 1));
         }
 
         function nextSlide() {
@@ -1159,6 +1130,7 @@
 
         // Keyboard navigation
         document.addEventListener('keydown', function(e) {
+            if (e.target.closest('a,button,input,textarea,select') && e.key === ' ') return;
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 nextSlide();
@@ -1175,7 +1147,16 @@
         });
 
         // Initialize
-        showSlide(0);
+        document.getElementById('fullscreen').addEventListener('click', async () => {
+            try {
+                if (document.fullscreenElement) await document.exitFullscreen();
+                else await document.documentElement.requestFullscreen();
+            } catch (error) {
+                document.getElementById('fullscreen').title = 'Fullscreen is unavailable in this browser';
+            }
+        });
+        const initialSlide = parseInt(location.hash.slice(1), 10);
+        showSlide(Number.isFinite(initialSlide) ? initialSlide - 1 : 0);
     </script>
 </body>
 </html>
